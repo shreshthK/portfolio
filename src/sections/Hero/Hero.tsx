@@ -43,7 +43,8 @@ function Hero() {
                         <img src={twitterIcon} alt="twitter icon" />
                     </a>
                 </span>
-                <p className={styles.description}>  Senior Software Engineer for Wabtec, develoing enterprise solution for supply chain management
+                <p className={styles.description}>
+                    Senior Software Engineer at Wabtec Corporation, specializing in enterprise-scale supply chain management solutions. Bringing 8+ years of expertise across healthcare and supply chain domains, with a focus on developing robust, scalable applications.
                 </p>
                 <a href={CV} download>
                     <button className="hover">Resume</button>
