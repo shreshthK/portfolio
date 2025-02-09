@@ -10,6 +10,7 @@ import githubIconLight from '../../assets/github-light.svg'
 import githubIconDark from '../../assets/github-dark.svg'
 import CV from '../../assets/CV.pdf'
 import { useTheme, Theme } from '../../common/ThemeContext'
+import { Button } from '@/components/ui/button'
 
 function Hero() {
     const { theme, setTheme } = useTheme();
@@ -47,7 +48,7 @@ function Hero() {
                     Senior Software Engineer at Wabtec Corporation, specializing in enterprise-scale supply chain management solutions. Bringing 8+ years of expertise across healthcare and supply chain domains, with a focus on developing robust, scalable applications.
                 </p>
                 <a href={CV} download>
-                    <button className="hover">Resume</button>
+                <Button className="bg-blue-600 hover:bg-blue-500">Resume</Button>
                 </a>
             </div>
         </section>
