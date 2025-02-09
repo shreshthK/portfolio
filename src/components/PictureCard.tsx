@@ -14,7 +14,7 @@ const PictureCard = ({ title, desc, url }: { title: string, desc: string, url: s
             <a href="#" className="mt-1 block text-lg leading-tight font-medium text-black hover:underline">
               {title}
             </a>
-            <p className="mt-2 text-gray-500">
+            <p className="mt-2" style={{color: "black"}}>
               {desc}
             </p>
           </div>
