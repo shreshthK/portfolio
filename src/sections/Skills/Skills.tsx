@@ -1,5 +1,5 @@
 import styles from './SkillsStyles.module.css';
-import checkMarkIconDark from '../../assets/checkmark-dark.svg';
+// import checkMarkIconDark from '../../assets/checkmark-dark.svg';
 import htmlIcon from '../../assets/tech-svg/HTML5.svg';
 import cssIcon from '../../assets/tech-svg/CSS3.svg';
 import jsIcon from '../../assets/tech-svg/JavaScript.svg';
@@ -14,13 +14,12 @@ import postgresIcon from '../../assets/tech-svg/PostgresSQL.svg';
 import materialUiIcon from '../../assets/tech-svg/Material UI.svg';
 import bootstrapIcon from '../../assets/tech-svg/Bootstrap.svg';
 import awsIcon from '../../assets/tech-svg/AWS.svg';
-import checkMarkIconLight from '../../assets/checkmark-light.svg';
+// import checkMarkIconLight from '../../assets/checkmark-light.svg';
 import SkillList from '../../common/SkillList';
-import { useTheme } from '../../common/ThemeContext';
 
 function Skills() {
-  const { theme } = useTheme();
-  const checkMarkIcon = theme === 'light' ? checkMarkIconLight : checkMarkIconDark;
+  // const { theme } = useTheme();
+  // const checkMarkIcon = theme === 'light' ? checkMarkIconLight : checkMarkIconDark;
 
   return (
     <section id="skills" className={styles.container}>
