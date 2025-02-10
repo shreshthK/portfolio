@@ -12,7 +12,7 @@ import CV from '../../assets/CV.pdf'
 import { useTheme, Theme } from '../../common/ThemeContext'
 import { Button } from '@/components/ui/button'
 
-import { toast as sonnerToast } from "sonner"
+import { toast } from "sonner"
 
 
 function Hero() {
@@ -23,12 +23,12 @@ function Hero() {
     const githubIcon = theme === Theme.Light ? githubIconLight : githubIconDark;
 
     return (
-        <section id="hero" className={styles.container}>
+        <section id="hero" className={styles.containerCustom + " " + styles.hero}>
             <div className={styles.colorModeContainer}>
                 <img className={styles.hero} src={heroImage} alt="profile picture" />
                 <img className={styles.colorMode} src={themeIcon} alt="theme icon" onClick={() => {
                     setTheme(theme === Theme.Light ? Theme.Dark : Theme.Light);
-                    sonnerToast(`Page Theme set to: ${theme === Theme.Light ? "Dark" : "Light"}`)
+                    toast(`Page Theme set to: ${theme === Theme.Light ? "Dark" : "Light"}`)
                     console.log(theme);
                 }} />
             </div>

@@ -90,7 +90,7 @@ body {
 #root {
   display: flex;
   flex-direction: column;
-  gap: 60px;
+  gap: 80px;
 }
 
 h1,
@@ -157,7 +157,7 @@ p {
 
   @media (width >= 1400px) {
     #root {
-      gap: 200px;
+      gap: 100px;
     }
     h1 {
       font-size: 48px;

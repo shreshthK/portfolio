@@ -1,12 +1,14 @@
-.container {
+.containerCustom {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
     gap: 20px;
     text-align: center;
-    height: 100dvh;
+    height: 65dvh;
     min-height: 500px;
+    margin: auto;
+    width: 90%;
   
     .hero {
       max-width: 200px;
@@ -58,7 +60,7 @@
   }
   
   @media (width >= 800px) {
-    .container {
+    .containerCustom {
       flex-direction: row-reverse;
       align-items: center;
       justify-content: space-evenly;
@@ -69,9 +71,12 @@
       }
     }
   }
+
   
   @media (width >= 1400px) {
-    .container {
+    .containerCustom {
+      width: 80%;
+      margin: auto;
       .hero {
         max-width: 400px;
         width: 400px;

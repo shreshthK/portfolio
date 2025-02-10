@@ -1,12 +1,12 @@
 import PictureCard from './components/PictureCard'
 import Hero from './sections/Hero/Hero'
-import Projects from './sections/Projects/Projects'
+// import Projects from './sections/Projects/Projects'
 import Skills from './sections/Skills/Skills'
 import Footer from './sections/Footer/Footer'
 import { useEffect } from 'react'
-import { Toaster } from "@/components/ui/toaster"
-import { Toaster as Sonner } from "@/components/ui/sonner"
+import { Toaster } from "@/components/ui/sonner"
 import Component from './components/DemoGraph/DemoGraph'
+import Navbar from './sections/Navbar/Navbar'
 import "preline/preline";
 import { IStaticMethods } from "preline/preline";
 declare global {
@@ -25,16 +25,15 @@ function App() {
 
   return (
     <>
+      <Navbar />
       <Hero />
       <Skills />
       {/* <Projects /> */}
       <Timeline />
       <Component />
-      <PictureCard title="Incredible accommodation for your team" desc="Looking to take your team away on a retreat to enjoy awesome food and take in some sunshine? We have a list of
-              places to do just that." url="./background.jpg" />
-      <Footer />
+      <PictureCard title="World of Warcraft, Traveling, and Cooking with my wife" desc="I enjoy playing World of Warcraft, especially high end raiding. Have been part Top 30 US guild for past 5 years. I also enjoy traveling and exploring new places. I also enjoy cooking with my wife." url="./background.jpg" />
       <Toaster />
-      <Sonner />
+      <Footer />
     </>
   )
 }
