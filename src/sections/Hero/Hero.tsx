@@ -8,7 +8,7 @@ import linkedinIconLight from '../../assets/linkedin-light.svg'
 import linkedinIconDark from '../../assets/linkedin-dark.svg'
 import githubIconLight from '../../assets/github-light.svg'
 import githubIconDark from '../../assets/github-dark.svg'
-import CV from '../../assets/CV.pdf'
+import CV from './CV.pdf'
 import { useTheme, Theme } from '../../common/ThemeContext'
 import { Button } from '@/components/ui/button'
 
