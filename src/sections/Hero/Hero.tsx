@@ -54,7 +54,7 @@ function Hero() {
                         <img src={githubIcon} alt="github icon" />
                     </motion.a>
                     <motion.a
-                        href="https://www.linkedin.com/in/shreshthkandari/"
+                        href="https://www.linkedin.com/in/shreshth-kandari-7ab84959/"
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}
@@ -63,7 +63,7 @@ function Hero() {
                         <img src={linkedinIcon} alt="linkedin icon" />
                     </motion.a>
                     <motion.a
-                        href="https://www.x.com/shreshthkandari/"
+                        href="https://www.https://x.com/KandariShreshth"
                         target="_blank"
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.1 }}

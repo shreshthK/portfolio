@@ -41,7 +41,7 @@ function App() {
             "url": "https://your-portfolio-url.com",
             "sameAs": [
               "https://github.com/shreshthk",
-              "https://linkedin.com/in/shreshthkandari"
+              "https://www.linkedin.com/in/shreshth-kandari-7ab84959/"
             ],
             "jobTitle": "Full Stack Developer",
             "worksFor": {
