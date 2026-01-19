@@ -26,7 +26,7 @@ function Footer() {
       {/* Gradient background */}
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-purple-500/10 dark:via-blue-500/10 dark:to-purple-500/20" />
 
-      <div className="relative max-w-4xl mx-auto px-6 py-16">
+      <div className="relative max-w-4xl mx-auto px-6 pt-1 pb-16">
         {/* CTA Section */}
         <motion.div
           className="text-center mb-12"
