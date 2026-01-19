@@ -1,11 +1,8 @@
-import PictureCard from './components/PictureCard'
 import Hero from './sections/Hero/Hero'
-// import Projects from './sections/Projects/Projects'
 import Skills from './sections/Skills/Skills'
 import Footer from './sections/Footer/Footer'
 import { useEffect } from 'react'
 import { Toaster } from "@/components/ui/sonner"
-import Component from './components/DemoGraph/DemoGraph'
 import Navbar from './sections/Navbar/Navbar'
 import "preline/preline";
 import { IStaticMethods } from "preline/preline";
@@ -15,11 +12,11 @@ declare global {
   }
 }
 import Timeline from './components/Timeline/Timeline'
+import Hobbies from './components/Hobbies'
 
 import './App.css'
 
 function App() {
-  const hobbyDescription ="A dedicated World of Warcraft player with a proven track record in a Top 30 US raiding guild. When not gaming, I explore new destinations and enjoy creating culinary experiences with my wife."  
   useEffect(() => {
     window.HSStaticMethods.autoInit();
   }, []);
@@ -44,7 +41,7 @@ function App() {
             "url": "https://your-portfolio-url.com",
             "sameAs": [
               "https://github.com/shreshthk",
-              "https://linkedin.com/in/shreshthkandari"
+              "https://www.linkedin.com/in/shreshth-kandari-7ab84959/"
             ],
             "jobTitle": "Full Stack Developer",
             "worksFor": {
@@ -55,12 +52,12 @@ function App() {
         </script>
       </head>
       <Navbar />
-      <Hero />
-      <Skills />
-      {/* <Projects /> */}
-      <Timeline />
-      <Component />
-      <PictureCard title="World of Warcraft, Traveling, and Cooking with my wife" desc={hobbyDescription} url="./background.jpg" />
+      <main className="pt-16">
+        <Hero />
+        <Skills />
+        <Timeline />
+        <Hobbies />
+      </main>
       <Toaster />
       <Footer />
     </>

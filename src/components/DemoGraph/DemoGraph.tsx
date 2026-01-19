@@ -1,11 +1,11 @@
-import { TrendingUp } from "lucide-react"
-import { Bar, BarChart, XAxis, YAxis } from "recharts"
+import { Bar, BarChart, XAxis, YAxis, Cell } from "recharts"
+import { motion } from "framer-motion"
+import { fadeInUp } from "@/lib/animations"
 
 import {
   Card,
   CardContent,
   CardDescription,
-  CardFooter,
   CardHeader,
   CardTitle,
 } from "@/components/ui/card"
@@ -15,86 +15,79 @@ import {
   ChartTooltip,
   ChartTooltipContent,
 } from "@/components/ui/chart"
+
 const chartData = [
-  { browser: "chrome", visitors: 275, fill: "var(--color-chrome)" },
-  { browser: "safari", visitors: 200, fill: "var(--color-safari)" },
-  { browser: "firefox", visitors: 187, fill: "var(--color-firefox)" },
-  { browser: "edge", visitors: 173, fill: "var(--color-edge)" },
-  { browser: "other", visitors: 90, fill: "var(--color-other)" },
+  { skill: "Angular", years: 8 },
+  { skill: "React", years: 6 },
+  { skill: "PostgreSQL", years: 6 },
+  { skill: "Node.js", years: 5 },
+  { skill: "TypeScript", years: 4 },
+]
+
+const colors = [
+  "hsl(221, 83%, 53%)",
+  "hsl(262, 83%, 58%)",
+  "hsl(173, 58%, 39%)",
+  "hsl(43, 74%, 50%)",
+  "hsl(340, 75%, 55%)",
 ]
 
 const chartConfig = {
-  visitors: {
-    label: "Visitors",
-  },
-  chrome: {
-    label: "Chrome",
-    color: "hsl(var(--chart-1))",
-  },
-  safari: {
-    label: "Safari",
-    color: "hsl(var(--chart-2))",
-  },
-  firefox: {
-    label: "Firefox",
-    color: "hsl(var(--chart-3))",
-  },
-  edge: {
-    label: "Edge",
-    color: "hsl(var(--chart-4))",
-  },
-  other: {
-    label: "Other",
-    color: "hsl(var(--chart-5))",
+  years: {
+    label: "Years of Experience",
   },
 } satisfies ChartConfig
 
 export default function DemoGraph() {
   return (
-    <div className="flex justify-center items-center">
-      <Card className="w-sm">
-        <CardHeader>
-          <CardTitle>Bar Chart - Mixed</CardTitle>
-          <CardDescription>January - June 2024</CardDescription>
+    <motion.div
+      className="flex justify-center items-center py-12 px-4"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+      variants={fadeInUp}
+    >
+      <Card className="w-full max-w-lg bg-card border-gray-200 dark:border-neutral-700">
+        <CardHeader className="pb-2">
+          <CardTitle className="text-xl dark:text-white">Skills Proficiency</CardTitle>
+          <CardDescription>Years of professional experience</CardDescription>
         </CardHeader>
-        <CardContent>
-          <ChartContainer config={chartConfig}>
+        <CardContent className="pt-4">
+          <ChartContainer config={chartConfig} className="h-[250px] w-full">
             <BarChart
-              accessibilityLayer
               data={chartData}
               layout="vertical"
-              margin={{
-                left: 0,
-              }}
+              margin={{ left: 20, right: 30, top: 10, bottom: 10 }}
             >
               <YAxis
-                dataKey="browser"
+                dataKey="skill"
                 type="category"
                 tickLine={false}
-                tickMargin={10}
                 axisLine={false}
-                tickFormatter={(value) =>
-                  chartConfig[value as keyof typeof chartConfig]?.label
-                }
+                width={80}
+                tick={{ fill: 'currentColor', fontSize: 12 }}
               />
-              <XAxis dataKey="visitors" type="number" hide />
+              <XAxis
+                type="number"
+                domain={[0, 10]}
+                tickLine={false}
+                axisLine={false}
+                tick={{ fill: 'currentColor', fontSize: 11 }}
+                tickFormatter={(value) => `${value} yrs`}
+              />
               <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent hideLabel />}
+                cursor={{ fill: 'rgba(0,0,0,0.1)' }}
+                content={<ChartTooltipContent />}
               />
-              <Bar dataKey="visitors" layout="vertical" radius={5} />
+              <Bar dataKey="years" radius={[0, 4, 4, 0]} barSize={24}>
+                {chartData.map((_, index) => (
+                  <Cell key={`cell-${index}`} fill={colors[index]} />
+                ))}
+              </Bar>
             </BarChart>
           </ChartContainer>
         </CardContent>
-        <CardFooter className="flex-col items-start gap-2 text-sm">
-          <div className="flex gap-2 font-medium leading-none">
-            Trending up by 5.2% this month <TrendingUp className="h-4 w-4" />
-          </div>
-          <div className="leading-none text-muted-foreground">
-            Showing total visitors for the last 6 months
-          </div>
-        </CardFooter>
       </Card>
-    </div>
+    </motion.div>
   )
 }
