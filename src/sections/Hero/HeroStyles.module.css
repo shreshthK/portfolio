@@ -3,83 +3,149 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 20px;
+    gap: 30px;
     text-align: center;
-    height: 65dvh;
-    min-height: 500px;
+    min-height: calc(100vh - 64px);
+    padding: 4rem 0;
     margin: auto;
     width: 90%;
-  
-    .hero {
-      max-width: 200px;
-    }
-  
+    max-width: 1200px;
+
     span {
       display: flex;
       gap: 25px;
       justify-content: center;
-  
+
       a {
         margin: 0;
-  
+
         img {
           width: 40px;
         }
       }
     }
-  
+
     a {
       width: fit-content;
       align-self: center;
     }
   }
-  
+
   .colorModeContainer {
     position: relative;
   }
-  
-  .colorMode {
+
+  .imageWrapper {
+    position: relative;
+    display: inline-block;
+  }
+
+  .glowRing {
     position: absolute;
-    top: 0;
-    right: 10px;
-    width: 25px;
+    top: -8px;
+    left: -8px;
+    right: -8px;
+    bottom: -8px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 100%);
+    opacity: 0.6;
+    filter: blur(15px);
+    z-index: -1;
+    animation: pulse 3s ease-in-out infinite;
   }
-  
-  .colorMode:hover {
-    cursor: pointer;
+
+  @keyframes pulse {
+    0%, 100% {
+      opacity: 0.4;
+      transform: scale(1);
+    }
+    50% {
+      opacity: 0.7;
+      transform: scale(1.05);
+    }
   }
-  
+
+  .heroImage {
+    max-width: 200px;
+    border-radius: 50%;
+    position: relative;
+    z-index: 1;
+  }
+
+  .gradientName {
+    background: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+  }
+
   .description {
-    /* max-width: 24ch; */
+    max-width: 600px;
+    line-height: 1.7;
+    font-size: 1.1rem;
   }
-  
+
   .info {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 24px;
   }
-  
+
+  .info h1 {
+    font-size: 2.5rem;
+    font-weight: 700;
+  }
+
+  .info h2 {
+    font-size: 1.25rem;
+    opacity: 0.8;
+  }
+
   @media (width >= 800px) {
     .containerCustom {
       flex-direction: row-reverse;
       align-items: center;
-      justify-content: space-evenly;
-  
-      .hero {
-        max-width: 350px;
-        width: 350px;
-      }
+      justify-content: space-between;
+      gap: 60px;
+    }
+
+    .info {
+      text-align: left;
+      align-items: flex-start;
+    }
+
+    .info h1 {
+      font-size: 3rem;
+    }
+
+    .info h2 {
+      font-size: 1.5rem;
+    }
+
+    .description {
+      font-size: 1.15rem;
+    }
+
+    .heroImage {
+      max-width: 350px;
+      width: 350px;
     }
   }
 
-  
+
   @media (width >= 1400px) {
     .containerCustom {
-      width: 80%;
+      width: 85%;
       margin: auto;
-      .hero {
-        max-width: 400px;
-        width: 400px;
-      }
+      gap: 80px;
+    }
+
+    .info h1 {
+      font-size: 3.5rem;
+    }
+
+    .heroImage {
+      max-width: 400px;
+      width: 400px;
     }
   }
