@@ -26,16 +26,16 @@ function Footer() {
       <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
         {/* CTA Section */}
         <motion.div
-          className="text-center mb-16"
+          className="flex flex-col items-center text-center mb-16"
           variants={fadeInUp}
         >
           <span className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 block">
             Get In Touch
           </span>
-          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6 text-center">
             Let's Work Together
           </h2>
-          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
+          <p className="text-lg text-muted-foreground max-w-xl mb-8 text-center">
             Have a project in mind or just want to chat? I'd love to hear from you.
           </p>
           <motion.a
