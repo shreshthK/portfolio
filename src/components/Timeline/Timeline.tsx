@@ -1,6 +1,5 @@
-import heroImage from '../../assets/hero-img.png'
 import { motion } from 'framer-motion'
-import { fadeInUp, slideInLeft } from '@/lib/animations'
+import { fadeInUp, staggerContainer, slideInLeft } from '@/lib/animations'
 
 interface TimelineItemProps {
     date: string;
@@ -10,47 +9,80 @@ interface TimelineItemProps {
     company: string;
     companyUrl?: string;
     isLatest?: boolean;
+    index: number;
 }
 
-const TimelineItem = ({ date, title, description, role, company, companyUrl, isLatest }: TimelineItemProps) => (
+const TimelineItem = ({ date, title, description, role, company, companyUrl, isLatest, index }: TimelineItemProps) => (
     <motion.div
         initial="hidden"
         whileInView="visible"
         viewport={{ once: true, amount: 0.3 }}
         variants={slideInLeft}
+        className="relative"
     >
-        <div className="ps-2 my-2 first:mt-0">
-            <h3 className="text-xs font-medium uppercase text-gray-500 dark:text-neutral-400">
-                {date}
-            </h3>
-        </div>
-        <div className="flex gap-x-3">
-            <div className="relative last:after:hidden after:absolute after:top-7 after:bottom-0 after:start-3.5 after:w-px after:-translate-x-[0.5px] after:bg-gradient-to-b after:from-blue-500 after:to-purple-500 dark:after:from-blue-400 dark:after:to-purple-400">
-                <div className="relative z-10 size-7 flex justify-center items-center">
-                    <div className={`size-4 rounded-full ${isLatest ? 'bg-gradient-to-r from-blue-500 to-purple-500 animate-pulse' : 'bg-gray-400 dark:bg-neutral-500'}`}></div>
+        <div className="flex gap-6 md:gap-10">
+            {/* Timeline line and dot */}
+            <div className="relative flex flex-col items-center">
+                {/* Dot */}
+                <div className={`
+                    relative z-10 size-3 rounded-full
+                    ${isLatest
+                        ? 'bg-accent shadow-[0_0_12px_hsl(12_76%_61%/0.5)]'
+                        : 'bg-border'
+                    }
+                `}>
+                    {isLatest && (
+                        <div className="absolute inset-0 rounded-full bg-accent animate-ping opacity-30" />
+                    )}
                 </div>
+
+                {/* Line */}
+                <div className="w-px flex-1 bg-border" />
             </div>
-            <div className="grow pt-0.5 pb-8">
-                <div className="p-4 rounded-xl bg-white/50 dark:bg-neutral-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-neutral-700/50 shadow-sm hover:shadow-md transition-shadow duration-200">
-                    <h4 className="flex gap-x-1.5 font-semibold text-gray-800 dark:text-white">
-                        <svg className="shrink-0 size-4 mt-1 text-blue-500" xmlns="http://www.w3.org/2000/svg" width="34" height="34" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-                            <path d="M14.5 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V7.5L14.5 2z"></path>
-                            <polyline points="14 2 14 8 20 8"></polyline>
-                            <line x1="16" x2="8" y1="13" y2="13"></line>
-                            <line x1="16" x2="8" y1="17" y2="17"></line>
-                            <line x1="10" x2="8" y1="9" y2="9"></line>
-                        </svg>
-                        {title}
-                    </h4>
-                    <p className="mt-2 text-sm text-gray-600 dark:text-neutral-400">
+
+            {/* Content */}
+            <div className="flex-1 pb-12">
+                {/* Date */}
+                <span className="font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground">
+                    {date}
+                </span>
+
+                {/* Card */}
+                <div className="mt-3 p-5 md:p-6 rounded-xl bg-card border border-border
+                    hover:border-accent/20 hover:shadow-md transition-all duration-300 group">
+
+                    {/* Index & Title */}
+                    <div className="flex items-start gap-3 mb-3">
+                        <span className="font-mono text-[10px] tracking-wider text-accent mt-1">
+                            {String(index + 1).padStart(2, '0')}
+                        </span>
+                        <h4 className="font-display font-bold text-lg text-foreground group-hover:text-accent transition-colors duration-300">
+                            {title}
+                        </h4>
+                    </div>
+
+                    {/* Description */}
+                    <p className="text-sm text-muted-foreground leading-relaxed mb-4 ml-8">
                         {description}
                     </p>
-                    <button type="button" className="mt-3 -ms-1 p-1 inline-flex items-center gap-x-2 text-xs rounded-lg border border-transparent text-gray-500 hover:bg-gray-100 focus:outline-none focus:bg-gray-100 disabled:opacity-50 disabled:pointer-events-none dark:text-neutral-400 dark:hover:bg-neutral-700 dark:focus:bg-neutral-700 transition-colors duration-200">
-                        <img className="shrink-0 size-4 rounded-full" src={heroImage} alt="Avatar" />
-                        {role} {companyUrl ? (
-                            <a href={companyUrl} target="_blank" rel="noopener noreferrer" className="text-blue-500 hover:underline">({company})</a>
-                        ) : `(${company})`}
-                    </button>
+
+                    {/* Role & Company */}
+                    <div className="flex items-center gap-2 ml-8 text-xs">
+                        <span className="text-foreground font-medium">{role}</span>
+                        <span className="text-border">at</span>
+                        {companyUrl ? (
+                            <a
+                                href={companyUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-accent hover:underline underline-offset-2"
+                            >
+                                {company}
+                            </a>
+                        ) : (
+                            <span className="text-muted-foreground">{company}</span>
+                        )}
+                    </div>
                 </div>
             </div>
         </div>
@@ -58,7 +90,7 @@ const TimelineItem = ({ date, title, description, role, company, companyUrl, isL
 )
 
 function Timeline() {
-    const timelineData: TimelineItemProps[] = [
+    const timelineData = [
         {
             date: "Aug 2016 - Jul 2017",
             title: "UPMC Mobile Application",
@@ -92,7 +124,8 @@ function Timeline() {
             company: "Wabtec",
             companyUrl: "https://www.wabteccorp.com/",
             isLatest: false
-        },{
+        },
+        {
             date: "Jul 2023 - Feb 2024",
             title: "Multi-tenant Support Implementation",
             description: "Made frontend/backend database agnostic to support multi-tenancy, integrating multiple enterprise databases including Oracle.",
@@ -122,21 +155,36 @@ function Timeline() {
     ]
 
     return (
-        <motion.div
+        <motion.section
             id="timeline"
-            className="flex flex-col items-center py-16"
+            className="py-24 md:py-32 bg-secondary/30"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, amount: 0.1 }}
-            variants={fadeInUp}
+            variants={staggerContainer}
         >
-            <h2 className="text-2xl font-bold dark:text-white">Career Timeline</h2>
-            <div className="mt-10 w-full max-w-2xl px-4">
-                {timelineData.map((item, index) => (
-                    <TimelineItem key={index} {...item} />
-                ))}
+            <div className="max-w-4xl mx-auto px-6">
+                {/* Section header */}
+                <motion.div className="mb-16 md:mb-20" variants={fadeInUp}>
+                    <span className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 block">
+                        Career Journey
+                    </span>
+                    <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+                        Experience
+                    </h2>
+                    <p className="text-lg text-muted-foreground max-w-2xl">
+                        A timeline of my professional growth and the impactful projects I've contributed to.
+                    </p>
+                </motion.div>
+
+                {/* Timeline */}
+                <div className="relative">
+                    {timelineData.map((item, index) => (
+                        <TimelineItem key={index} {...item} index={index} />
+                    ))}
+                </div>
             </div>
-        </motion.div>
+        </motion.section>
     )
 }
 

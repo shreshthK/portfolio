@@ -5,77 +5,95 @@
 @custom-variant dark (&:is(.dark *));
 
 :root {
-  --background: hsl(0 0% 100%);
-  --foreground: hsl(0 0% 3.9%);
-  --card: hsl(0 0% 100%);
-  --card-foreground: hsl(0 0% 3.9%);
-  --popover: hsl(0 0% 100%);
-  --popover-foreground: hsl(0 0% 3.9%);
-  --primary: hsl(0 0% 9%);
-  --primary-foreground: hsl(0 0% 98%);
-  --secondary: hsl(0 0% 96.1%);
-  --secondary-foreground: hsl(0 0% 9%);
-  --muted: hsl(0 0% 96.1%);
-  --muted-foreground: hsl(0 0% 45.1%);
-  --accent: hsl(221 83% 53%);
-  --accent-foreground: hsl(0 0% 98%);
-  --destructive: hsl(0 84.2% 60.2%);
+  /* Typography */
+  --font-display: 'Syne', sans-serif;
+  --font-body: 'DM Sans', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+
+  /* New Refined Color Palette - Warm & Sophisticated */
+  --background: hsl(40 20% 98%);
+  --foreground: hsl(20 10% 12%);
+  --card: hsl(40 15% 96%);
+  --card-foreground: hsl(20 10% 12%);
+  --popover: hsl(40 20% 98%);
+  --popover-foreground: hsl(20 10% 12%);
+  --primary: hsl(20 10% 12%);
+  --primary-foreground: hsl(40 20% 98%);
+  --secondary: hsl(40 10% 92%);
+  --secondary-foreground: hsl(20 10% 20%);
+  --muted: hsl(40 10% 92%);
+  --muted-foreground: hsl(20 5% 45%);
+
+  /* Accent - Coral/Terracotta for warmth */
+  --accent: hsl(12 76% 61%);
+  --accent-foreground: hsl(0 0% 100%);
+  --accent-secondary: hsl(160 60% 40%);
+
+  --destructive: hsl(0 72% 51%);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(0 0% 89.8%);
-  --input: hsl(0 0% 89.8%);
-  --ring: hsl(221 83% 53%);
-  --chart-1: hsl(221 83% 53%);
-  --chart-2: hsl(262 83% 58%);
-  --chart-3: hsl(173 58% 39%);
-  --chart-4: hsl(43 74% 66%);
-  --chart-5: hsl(340 75% 55%);
-  --radius: 0.6rem;
+  --border: hsl(30 15% 88%);
+  --input: hsl(30 15% 88%);
+  --ring: hsl(12 76% 61%);
 
-  /* Glassmorphism */
-  --glass-bg: rgba(255, 255, 255, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.3);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  /* Chart colors - Refined palette */
+  --chart-1: hsl(12 76% 61%);
+  --chart-2: hsl(160 60% 40%);
+  --chart-3: hsl(45 90% 55%);
+  --chart-4: hsl(220 60% 55%);
+  --chart-5: hsl(280 55% 55%);
 
-  /* Shadows */
-  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05);
-  --shadow-md: 0 4px 6px rgba(0, 0, 0, 0.07);
-  --shadow-lg: 0 10px 15px rgba(0, 0, 0, 0.1);
-  --shadow-xl: 0 20px 25px rgba(0, 0, 0, 0.15);
+  --radius: 0.5rem;
 
-  /* Gradient */
-  --gradient-primary: linear-gradient(135deg, hsl(221 83% 53%) 0%, hsl(262 83% 58%) 100%);
+  /* Refined shadows with warm tint */
+  --shadow-sm: 0 1px 2px hsla(20, 10%, 12%, 0.04);
+  --shadow-md: 0 4px 12px hsla(20, 10%, 12%, 0.06);
+  --shadow-lg: 0 12px 32px hsla(20, 10%, 12%, 0.08);
+  --shadow-xl: 0 24px 48px hsla(20, 10%, 12%, 0.12);
+  --shadow-glow: 0 0 40px hsla(12, 76%, 61%, 0.15);
+
+  /* Gradient - Warm to cool */
+  --gradient-primary: linear-gradient(135deg, hsl(12 76% 61%) 0%, hsl(160 60% 40%) 100%);
+  --gradient-subtle: linear-gradient(180deg, hsl(40 20% 98%) 0%, hsl(40 15% 94%) 100%);
 }
 
 .dark {
-  --background: hsl(222 47% 6%);
-  --foreground: hsl(0 0% 98%);
-  --card: hsl(222 47% 8%);
-  --card-foreground: hsl(0 0% 98%);
-  --popover: hsl(222 47% 8%);
-  --popover-foreground: hsl(0 0% 98%);
-  --primary: hsl(0 0% 98%);
-  --primary-foreground: hsl(222 47% 6%);
-  --secondary: hsl(222 47% 14%);
-  --secondary-foreground: hsl(0 0% 98%);
-  --muted: hsl(222 47% 14%);
-  --muted-foreground: hsl(0 0% 63.9%);
-  --accent: hsl(221 83% 53%);
-  --accent-foreground: hsl(0 0% 98%);
-  --destructive: hsl(0 62.8% 30.6%);
-  --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(222 47% 18%);
-  --input: hsl(222 47% 18%);
-  --ring: hsl(221 83% 53%);
-  --chart-1: hsl(221 83% 60%);
-  --chart-2: hsl(262 83% 65%);
-  --chart-3: hsl(173 58% 45%);
-  --chart-4: hsl(43 74% 66%);
-  --chart-5: hsl(340 75% 60%);
+  --background: hsl(220 20% 7%);
+  --foreground: hsl(40 20% 95%);
+  --card: hsl(220 18% 10%);
+  --card-foreground: hsl(40 20% 95%);
+  --popover: hsl(220 18% 10%);
+  --popover-foreground: hsl(40 20% 95%);
+  --primary: hsl(40 20% 95%);
+  --primary-foreground: hsl(220 20% 7%);
+  --secondary: hsl(220 15% 15%);
+  --secondary-foreground: hsl(40 15% 90%);
+  --muted: hsl(220 15% 15%);
+  --muted-foreground: hsl(40 10% 55%);
 
-  /* Glassmorphism - Dark */
-  --glass-bg: rgba(15, 23, 42, 0.8);
-  --glass-border: rgba(255, 255, 255, 0.1);
-  --glass-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  /* Accent stays vibrant in dark mode */
+  --accent: hsl(12 80% 65%);
+  --accent-foreground: hsl(220 20% 7%);
+  --accent-secondary: hsl(160 65% 50%);
+
+  --destructive: hsl(0 62.8% 40%);
+  --destructive-foreground: hsl(0 0% 98%);
+  --border: hsl(220 15% 18%);
+  --input: hsl(220 15% 18%);
+  --ring: hsl(12 80% 65%);
+
+  /* Chart colors - Brighter for dark mode */
+  --chart-1: hsl(12 80% 65%);
+  --chart-2: hsl(160 65% 50%);
+  --chart-3: hsl(45 95% 60%);
+  --chart-4: hsl(220 70% 60%);
+  --chart-5: hsl(280 60% 60%);
+
+  /* Dark mode shadows */
+  --shadow-sm: 0 1px 2px hsla(0, 0%, 0%, 0.2);
+  --shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.3);
+  --shadow-lg: 0 12px 32px hsla(0, 0%, 0%, 0.4);
+  --shadow-xl: 0 24px 48px hsla(0, 0%, 0%, 0.5);
+  --shadow-glow: 0 0 60px hsla(12, 80%, 65%, 0.2);
 }
 
 @theme inline {
@@ -107,6 +125,9 @@
   --radius-md: calc(var(--radius) - 2px);
   --radius-lg: var(--radius);
   --radius-xl: calc(var(--radius) + 4px);
+  --font-display: var(--font-display);
+  --font-body: var(--font-body);
+  --font-mono: var(--font-mono);
 }
 
 @layer base {
@@ -118,5 +139,26 @@
   }
   body {
     @apply bg-background text-foreground;
+    font-family: var(--font-body);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Editorial typography */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  code, pre {
+    font-family: var(--font-mono);
+  }
+
+  /* Selection styling */
+  ::selection {
+    background: hsl(var(--accent) / 0.2);
+    color: inherit;
   }
 }
