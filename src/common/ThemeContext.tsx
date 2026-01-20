@@ -1,6 +1,5 @@
 import React, { createContext, useContext, useEffect } from 'react';
 
-// 1. Define the theme type and context type
 export enum Theme {
   Light = 'light',
   Dark = 'dark',
@@ -11,23 +10,41 @@ export type ThemeContextType = {
   setTheme: (theme: Theme) => void;
 };
 
-
-// 2. Create the context with a default value
-
 export const ThemeContext = createContext<ThemeContextType>({
-  theme: Theme.Light, // Default theme
-  setTheme: () => { }, // Empty function as default
+  theme: Theme.Light,
+  setTheme: () => { },
 });
 
-// 3. Create a custom hook to use the context
 export const useTheme = () => useContext(ThemeContext);
 
-// 4. Create a provider component
 export const ThemeProvider: React.FC<{ children: React.ReactNode }> = ({ children }) => {
-  const [theme, setTheme] = React.useState<Theme>(Theme.Light);
+  // Initialize from localStorage or system preference
+  const [theme, setTheme] = React.useState<Theme>(() => {
+    const saved = localStorage.getItem('theme');
+    if (saved === 'dark' || saved === 'light') {
+      return saved as Theme;
+    }
+    // Check system preference
+    if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+      return Theme.Dark;
+    }
+    return Theme.Light;
+  });
 
   useEffect(() => {
+    const root = document.documentElement;
+
+    // Add/remove dark class on <html> element for Tailwind
+    if (theme === Theme.Dark) {
+      root.classList.add('dark');
+    } else {
+      root.classList.remove('dark');
+    }
+
+    // Also set data-theme for any legacy styles
     document.body.setAttribute('data-theme', theme);
+
+    // Persist to localStorage
     localStorage.setItem('theme', theme);
   }, [theme]);
 

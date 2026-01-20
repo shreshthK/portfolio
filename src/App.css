@@ -10,13 +10,6 @@
   --text-color: var(--foreground);
 }
 
-[data-theme='dark'] {
-  --background-color: var(--background);
-  --btn-color: var(--accent);
-  --btn-text-color: var(--accent-foreground);
-  --text-color: var(--foreground);
-}
-
 body {
   background-color: var(--background);
   display: flex;
