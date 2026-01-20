@@ -17,116 +17,128 @@ function Footer() {
   return (
     <motion.footer
       id="footer"
-      className="relative overflow-hidden"
+      className="relative bg-secondary/30"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.2 }}
       variants={staggerContainer}
     >
-      {/* Gradient background */}
-      <div className="absolute inset-0 bg-gradient-to-b from-transparent via-blue-500/5 to-purple-500/10 dark:via-blue-500/10 dark:to-purple-500/20" />
-
-      <div className="relative max-w-4xl mx-auto px-6 pt-1 pb-16">
+      <div className="max-w-6xl mx-auto px-6 py-24 md:py-32">
         {/* CTA Section */}
         <motion.div
-          className="text-center mb-12"
+          className="text-center mb-16"
           variants={fadeInUp}
         >
-          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+          <span className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 block">
+            Get In Touch
+          </span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
             Let's Work Together
           </h2>
-          <p className="text-gray-600 dark:text-neutral-400 mb-6">
+          <p className="text-lg text-muted-foreground max-w-xl mx-auto mb-8">
             Have a project in mind or just want to chat? I'd love to hear from you.
           </p>
           <motion.a
             href="mailto:shreshth.kandari@gmail.com"
-            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-gradient-to-r from-blue-500 to-purple-600 text-white font-medium shadow-lg hover:shadow-xl transition-all duration-300 mt-4"
-            whileHover={{ scale: 1.05 }}
+            className="inline-flex items-center gap-3 px-8 py-4
+              bg-accent text-accent-foreground
+              font-medium rounded-full
+              shadow-lg hover:shadow-xl
+              transition-all duration-300"
+            whileHover={{ scale: 1.02 }}
             whileTap={{ scale: 0.98 }}
+            style={{ boxShadow: '0 4px 14px hsl(12 76% 61% / 0.25)' }}
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
             </svg>
-            Get in Touch
+            <span>Send a Message</span>
           </motion.a>
         </motion.div>
 
         {/* Divider */}
         <motion.div
-          className="w-24 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 mx-auto mb-12 rounded-full"
+          className="w-16 h-px bg-border mx-auto mb-16"
           variants={fadeInUp}
         />
 
-        {/* Social Links */}
+        {/* Bottom section */}
         <motion.div
-          className="flex justify-center gap-4 mb-8"
+          className="flex flex-col md:flex-row items-center justify-between gap-8"
           variants={fadeInUp}
         >
-          <motion.a
-            href="https://github.com/shreshthk"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full bg-white/50 dark:bg-neutral-800/50 border border-gray-200/50 dark:border-neutral-700/50 hover:border-blue-500/50 transition-all duration-200"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <img src={githubIcon} alt="GitHub" className="w-5 h-5" />
-          </motion.a>
-          <motion.a
-            href="https://www.linkedin.com/in/shreshth-kandari-7ab84959/"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full bg-white/50 dark:bg-neutral-800/50 border border-gray-200/50 dark:border-neutral-700/50 hover:border-blue-500/50 transition-all duration-200"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <img src={linkedinIcon} alt="LinkedIn" className="w-5 h-5" />
-          </motion.a>
-          <motion.a
-            href="https://www.https://x.com/KandariShreshth"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="p-3 rounded-full bg-white/50 dark:bg-neutral-800/50 border border-gray-200/50 dark:border-neutral-700/50 hover:border-blue-500/50 transition-all duration-200"
-            whileHover={{ scale: 1.1, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-          >
-            <img src={twitterIcon} alt="Twitter" className="w-5 h-5" />
-          </motion.a>
-        </motion.div>
-
-        {/* Contact Info */}
-        <motion.div
-          className="flex flex-col sm:flex-row items-center justify-center gap-6 text-gray-600 dark:text-neutral-400"
-          variants={fadeInUp}
-        >
-          <div className="flex items-center gap-2">
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span>Fort Worth, TX</span>
+          {/* Contact info */}
+          <div className="flex flex-col sm:flex-row items-center gap-6 text-sm text-muted-foreground">
+            <div className="flex items-center gap-2">
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+              <span>Fort Worth, TX</span>
+            </div>
+            <span className="hidden sm:block text-border">|</span>
+            <a
+              href="mailto:shreshth.kandari@gmail.com"
+              className="flex items-center gap-2 hover:text-accent transition-colors duration-200"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+              <span>shreshth.kandari@gmail.com</span>
+            </a>
           </div>
-          <span className="hidden sm:block text-gray-300 dark:text-neutral-600">•</span>
-          <a
-            href="mailto:shreshth.kandari@gmail.com"
-            className="flex items-center gap-2 hover:text-blue-500 dark:hover:text-blue-400 transition-colors duration-200"
-          >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-            </svg>
-            <span>shreshth.kandari@gmail.com</span>
-          </a>
+
+          {/* Social Links */}
+          <div className="flex items-center gap-3">
+            <motion.a
+              href="https://github.com/shreshthk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-background border border-border
+                hover:border-accent/30 transition-all duration-200"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="GitHub"
+            >
+              <img src={githubIcon} alt="" className="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity" />
+            </motion.a>
+            <motion.a
+              href="https://www.linkedin.com/in/shreshth-kandari-7ab84959/"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-background border border-border
+                hover:border-accent/30 transition-all duration-200"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="LinkedIn"
+            >
+              <img src={linkedinIcon} alt="" className="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity" />
+            </motion.a>
+            <motion.a
+              href="https://x.com/KandariShreshth"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="p-3 rounded-full bg-background border border-border
+                hover:border-accent/30 transition-all duration-200"
+              whileHover={{ scale: 1.1, y: -2 }}
+              whileTap={{ scale: 0.95 }}
+              aria-label="Twitter"
+            >
+              <img src={twitterIcon} alt="" className="w-5 h-5 opacity-70 hover:opacity-100 transition-opacity" />
+            </motion.a>
+          </div>
         </motion.div>
 
         {/* Copyright */}
         <motion.div
-          className="mt-12 pt-8 border-t border-gray-200/50 dark:border-neutral-700/50 text-center"
+          className="mt-16 pt-8 border-t border-border text-center"
           variants={fadeInUp}
         >
-          <p className="text-sm text-gray-500 dark:text-neutral-500">
-            Designed & Built by Shreshth Kandari
+          <p className="text-sm text-muted-foreground">
+            Designed & Built by{' '}
+            <span className="text-foreground font-medium">Shreshth Kandari</span>
           </p>
-          <p className="text-xs text-gray-400 dark:text-neutral-600 mt-1">
+          <p className="text-xs text-muted-foreground/60 mt-2 font-mono">
             &copy; {new Date().getFullYear()} All rights reserved.
           </p>
         </motion.div>

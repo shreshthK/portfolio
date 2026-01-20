@@ -30,12 +30,14 @@ interface Skill {
 
 interface SkillCategory {
   title: string;
+  description: string;
   skills: Skill[];
 }
 
 const skillCategories: SkillCategory[] = [
   {
     title: "Frontend",
+    description: "Building responsive, performant user interfaces",
     skills: [
       { name: "React", icon: reactIcon },
       { name: "Angular", icon: angularIcon },
@@ -48,6 +50,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "Backend",
+    description: "Scalable server-side architecture",
     skills: [
       { name: "Node.js", icon: nodeIcon },
       { name: "Java Spring Boot", icon: javaIcon },
@@ -56,6 +59,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "DevOps & Cloud",
+    description: "Infrastructure and deployment automation",
     skills: [
       { name: "AWS", icon: awsIcon },
       { name: "Docker", icon: dockerIcon },
@@ -66,6 +70,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "AI & Automation",
+    description: "Leveraging AI to enhance development",
     skills: [
       { name: "Claude AI", icon: claudeIcon },
       { name: "GitHub Copilot", icon: copilotIcon },
@@ -75,6 +80,7 @@ const skillCategories: SkillCategory[] = [
   },
   {
     title: "Tools & Monitoring",
+    description: "Observability and analytics",
     skills: [
       { name: "Sentry", icon: sentryIcon },
       { name: "PostHog", icon: posthogIcon }
@@ -85,37 +91,66 @@ const skillCategories: SkillCategory[] = [
 const SkillBadge = ({ skill }: { skill: Skill }) => (
   <motion.div
     variants={fadeInUp}
-    whileHover={{ scale: 1.05, y: -3 }}
-    className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/70 dark:bg-neutral-800/70 backdrop-blur-sm border border-gray-200/50 dark:border-neutral-700/50 shadow-sm hover:shadow-md transition-all duration-200"
+    whileHover={{ y: -2 }}
+    className="group flex items-center gap-2.5 px-4 py-2.5
+      bg-secondary/50 hover:bg-secondary
+      border border-transparent hover:border-accent/20
+      rounded-lg transition-all duration-200"
   >
     {skill.icon && (
-      <img src={skill.icon} alt={skill.name} className="w-5 h-5 object-contain" />
+      <img
+        src={skill.icon}
+        alt=""
+        className="w-5 h-5 object-contain opacity-70 group-hover:opacity-100 transition-opacity"
+      />
     )}
-    <span className="text-sm font-medium text-gray-700 dark:text-neutral-200">{skill.name}</span>
+    <span className="text-sm font-medium text-muted-foreground group-hover:text-foreground transition-colors">
+      {skill.name}
+    </span>
   </motion.div>
 );
 
-const SkillCategorySection = ({ category }: { category: SkillCategory }) => (
+const SkillCategorySection = ({ category, index }: { category: SkillCategory; index: number }) => (
   <motion.div
-    className="mb-10"
+    className="group"
     initial="hidden"
     whileInView="visible"
     viewport={{ once: true, amount: 0.2 }}
     variants={staggerContainer}
   >
-    <motion.h3
-      variants={fadeInUp}
-      className="text-lg font-semibold text-gray-800 dark:text-white mb-4 flex items-center gap-2"
-    >
-      <span className="w-8 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500 rounded-full"></span>
-      {category.title}
-    </motion.h3>
+    <div className="mb-5">
+      {/* Category number */}
+      <motion.span
+        variants={fadeInUp}
+        className="font-mono text-[10px] tracking-[0.2em] uppercase text-accent mb-2 block"
+      >
+        0{index + 1}
+      </motion.span>
+
+      {/* Category title */}
+      <motion.h3
+        variants={fadeInUp}
+        className="text-xl font-display font-bold text-foreground mb-1"
+      >
+        {category.title}
+      </motion.h3>
+
+      {/* Description */}
+      <motion.p
+        variants={fadeInUp}
+        className="text-sm text-muted-foreground"
+      >
+        {category.description}
+      </motion.p>
+    </div>
+
+    {/* Skills grid */}
     <motion.div
-      className="flex flex-wrap gap-3"
+      className="flex flex-wrap gap-2"
       variants={staggerContainer}
     >
-      {category.skills.map((skill, index) => (
-        <SkillBadge key={index} skill={skill} />
+      {category.skills.map((skill, i) => (
+        <SkillBadge key={i} skill={skill} />
       ))}
     </motion.div>
   </motion.div>
@@ -125,23 +160,32 @@ function Skills() {
   return (
     <motion.section
       id="skills"
-      className="py-20 px-6 max-w-4xl mx-auto"
+      className="py-24 md:py-32 bg-secondary/30"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.1 }}
       variants={staggerContainer}
     >
-      <motion.div className="mb-12" variants={fadeInUp}>
-        <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-3">Skills & Expertise</h2>
-        <p className="text-gray-600 dark:text-neutral-400">
-          Technologies and tools I use to bring ideas to life
-        </p>
-      </motion.div>
+      <div className="max-w-6xl mx-auto px-6">
+        {/* Section header */}
+        <motion.div className="mb-16 md:mb-20" variants={fadeInUp}>
+          <span className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 block">
+            Technical Expertise
+          </span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground mb-6">
+            Skills & Tools
+          </h2>
+          <p className="text-lg text-muted-foreground max-w-2xl">
+            Technologies and tools I use to bring ideas to life, from concept to production.
+          </p>
+        </motion.div>
 
-      <div className="grid md:grid-cols-2 gap-x-12 gap-y-4">
-        {skillCategories.map((category, index) => (
-          <SkillCategorySection key={index} category={category} />
-        ))}
+        {/* Skills grid - 2 columns on desktop */}
+        <div className="grid md:grid-cols-2 gap-12 md:gap-16">
+          {skillCategories.map((category, index) => (
+            <SkillCategorySection key={index} category={category} index={index} />
+          ))}
+        </div>
       </div>
     </motion.section>
   );

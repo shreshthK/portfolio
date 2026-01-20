@@ -1,5 +1,6 @@
 import Hero from './sections/Hero/Hero'
 import Skills from './sections/Skills/Skills'
+import Projects from './sections/Projects/Projects'
 import Footer from './sections/Footer/Footer'
 import { useEffect } from 'react'
 import { Toaster } from "@/components/ui/sonner"
@@ -52,9 +53,10 @@ function App() {
         </script>
       </head>
       <Navbar />
-      <main className="pt-16">
+      <main>
         <Hero />
         <Skills />
+        <Projects />
         <Timeline />
         <Hobbies />
       </main>
