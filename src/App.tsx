@@ -56,8 +56,8 @@ function App() {
       <main>
         <Hero />
         <Skills />
-        <Projects />
         <Timeline />
+        <Projects />
         <Hobbies />
       </main>
       <Toaster />
