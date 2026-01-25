@@ -10,6 +10,9 @@ import htmlIcon from '../../assets/tech-svg/HTML5.svg';
 import cssIcon from '../../assets/tech-svg/CSS3.svg';
 import tailwindIcon from '../../assets/tech-svg/Tailwind CSS.svg';
 import nodeIcon from '../../assets/tech-svg/Node.js.svg';
+import bunIcon from '../../assets/tech-svg/Bun.svg';
+import honoIcon from '../../assets/tech-svg/Hono.svg';
+import expressIcon from '../../assets/tech-svg/Express.svg';
 import postgresIcon from '../../assets/tech-svg/PostgresSQL.svg';
 import gitIcon from '../../assets/tech-svg/Git.svg';
 import awsIcon from '../../assets/tech-svg/AWS.svg';
@@ -53,6 +56,9 @@ const skillCategories: SkillCategory[] = [
     description: "Scalable server-side architecture",
     skills: [
       { name: "Node.js", icon: nodeIcon },
+      { name: "Bun", icon: bunIcon },
+      { name: "Hono", icon: honoIcon },
+      { name: "Express", icon: expressIcon },
       { name: "Java Spring Boot", icon: javaIcon },
       { name: "PostgreSQL", icon: postgresIcon },
     ]

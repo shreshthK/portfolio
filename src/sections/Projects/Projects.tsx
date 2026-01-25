@@ -13,36 +13,12 @@ interface Project {
 
 const projects: Project[] = [
   {
-    title: "Enterprise Supply Chain Platform",
-    description: "Led development of a comprehensive sourcing application handling $2B+ in annual procurement. Built with React, TypeScript, and Java Spring Boot with microservices architecture.",
-    tags: ["React", "TypeScript", "Spring Boot", "PostgreSQL", "AWS"],
+    title: 'Tic-Tac-Toe',
+    description: 'An online multiplayer tic-tac-toe game. Play against friends or strangers in real time in your browser.',
+    tags: ['Game', 'Multiplayer', 'Web'],
+    link: 'http://44.195.152.236',
+    year: '2025',
     featured: true,
-    year: "2024",
-  },
-  {
-    title: "AI-Powered Code Assistant",
-    description: "Integrated Claude AI and GitHub Copilot into development workflows, reducing code review time by 40% and improving code quality metrics across the team.",
-    tags: ["Claude AI", "LLM Integration", "Node.js", "TypeScript"],
-    year: "2024",
-  },
-  {
-    title: "Healthcare Data Platform",
-    description: "Architected HIPAA-compliant data visualization dashboards processing 10M+ patient records daily. Implemented real-time analytics with sub-second query response.",
-    tags: ["Angular", "D3.js", "Python", "AWS", "Docker"],
-    featured: true,
-    year: "2022",
-  },
-  {
-    title: "CI/CD Pipeline Modernization",
-    description: "Redesigned deployment infrastructure reducing deployment time from 45 minutes to under 5 minutes. Implemented blue-green deployments with zero-downtime releases.",
-    tags: ["Kubernetes", "Docker", "Jenkins", "AWS EKS"],
-    year: "2023",
-  },
-  {
-    title: "Real-time Monitoring Dashboard",
-    description: "Built comprehensive observability platform using Sentry and PostHog, enabling proactive issue detection and reducing MTTR by 60%.",
-    tags: ["React", "Sentry", "PostHog", "WebSockets"],
-    year: "2023",
   },
 ];
 
@@ -166,8 +142,7 @@ function Projects() {
             Projects & Impact
           </h2>
           <p className="text-lg text-muted-foreground max-w-2xl">
-            A selection of meaningful projects where I've made significant technical contributions
-            and driven measurable business outcomes.
+            A selection of personal projects and contributions to open source projects
           </p>
         </motion.div>
 
