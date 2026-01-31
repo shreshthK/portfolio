@@ -20,6 +20,13 @@ const projects: Project[] = [
     year: '2025',
     featured: true,
   },
+  {
+    title: 'Snip.it URL Shortener',
+    description: 'A fast URL shortener with a Bun + Hono backend and a React UI for generating and managing short links.',
+    tags: ['URL Shortener', 'Hono', 'Bun', 'React'],
+    link: 'http://44.195.152.236:3000/',
+    year: '2026',
+  },
 ];
 
 const ProjectCard = ({ project, index }: { project: Project; index: number }) => {
