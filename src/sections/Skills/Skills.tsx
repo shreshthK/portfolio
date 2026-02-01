@@ -22,8 +22,6 @@ import cicdIcon from '../../assets/tech-svg/CICD.svg';
 import claudeIcon from '../../assets/tech-svg/Anthropic.svg';
 import copilotIcon from '../../assets/tech-svg/Copilot.svg';
 import aiIcon from '../../assets/tech-svg/AI.svg';
-import sentryIcon from '../../assets/tech-svg/Sentry.svg';
-import posthogIcon from '../../assets/tech-svg/PostHog.svg';
 
 interface Skill {
   name: string;
