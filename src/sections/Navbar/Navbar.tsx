@@ -71,17 +71,17 @@ function Navbar() {
               </a>
               <a
                 className="font-mono text-xs tracking-wider uppercase text-muted-foreground hover:text-accent focus:outline-none focus:text-accent transition-colors duration-200"
-                href="#projects"
-              >
-                Projects
-              </a>
-              <a
-                className="font-mono text-xs tracking-wider uppercase text-muted-foreground hover:text-accent focus:outline-none focus:text-accent transition-colors duration-200"
                 href="#timeline"
               >
                 Experience
               </a>
-
+              <a
+                className="font-mono text-xs tracking-wider uppercase text-muted-foreground hover:text-accent focus:outline-none focus:text-accent transition-colors duration-200"
+                href="#projects"
+              >
+                Projects
+              </a>
+              
               {/* Theme toggle */}
               <button
                 className="flex items-center justify-center size-9 rounded-full border border-border bg-background hover:bg-secondary hover:border-accent/30 focus:outline-none transition-all duration-200"
