@@ -22,8 +22,6 @@ import cicdIcon from '../../assets/tech-svg/CICD.svg';
 import claudeIcon from '../../assets/tech-svg/Anthropic.svg';
 import copilotIcon from '../../assets/tech-svg/Copilot.svg';
 import aiIcon from '../../assets/tech-svg/AI.svg';
-import sentryIcon from '../../assets/tech-svg/Sentry.svg';
-import posthogIcon from '../../assets/tech-svg/PostHog.svg';
 
 interface Skill {
   name: string;
@@ -80,14 +78,6 @@ const skillCategories: SkillCategory[] = [
       { name: "GitHub Copilot", icon: copilotIcon },
       { name: "LLM Integration", icon: aiIcon },
       { name: "AI Workflows", icon: aiIcon },
-    ]
-  },
-  {
-    title: "Tools & Monitoring",
-    description: "Observability and analytics",
-    skills: [
-      { name: "Sentry", icon: sentryIcon },
-      { name: "PostHog", icon: posthogIcon }
     ]
   }
 ];

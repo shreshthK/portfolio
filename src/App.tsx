@@ -25,7 +25,7 @@ function App() {
   return (
     <>
       <head>
-        <title>Shreshth Kandari - Professional Portfolio</title>
+        <title>Shreshth Kandari | Senior Software Developer</title>
         <meta name="description" content="Professional portfolio showcasing full-stack development skills, experience in WoW raiding, and passion for cooking and travel." />
         <meta name="keywords" content="full stack developer, web development, React, TypeScript, World of Warcraft" />
         <meta name="author" content="Shreshth Kandari" />
