@@ -81,14 +81,6 @@ const skillCategories: SkillCategory[] = [
       { name: "LLM Integration", icon: aiIcon },
       { name: "AI Workflows", icon: aiIcon },
     ]
-  },
-  {
-    title: "Tools & Monitoring",
-    description: "Observability and analytics",
-    skills: [
-      { name: "Sentry", icon: sentryIcon },
-      { name: "PostHog", icon: posthogIcon }
-    ]
   }
 ];
 
