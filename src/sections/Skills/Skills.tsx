@@ -18,7 +18,6 @@ import gitIcon from '../../assets/tech-svg/Git.svg';
 import awsIcon from '../../assets/tech-svg/AWS.svg';
 import javaIcon from '../../assets/tech-svg/Java.svg';
 import dockerIcon from '../../assets/tech-svg/Docker.svg';
-import kubernetesIcon from '../../assets/tech-svg/Kubernetes.svg';
 import cicdIcon from '../../assets/tech-svg/CICD.svg';
 import claudeIcon from '../../assets/tech-svg/Anthropic.svg';
 import copilotIcon from '../../assets/tech-svg/Copilot.svg';
@@ -69,7 +68,6 @@ const skillCategories: SkillCategory[] = [
     skills: [
       { name: "AWS", icon: awsIcon },
       { name: "Docker", icon: dockerIcon },
-      { name: "Kubernetes", icon: kubernetesIcon },
       { name: "Git", icon: gitIcon },
       { name: "CI/CD", icon: cicdIcon },
     ]

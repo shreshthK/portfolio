@@ -1,4 +1,10 @@
-<svg width="64" height="64" viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <circle cx="32" cy="32" r="26" stroke="#94A3B8" stroke-width="4"/>
-  <text x="32" y="40" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="700" fill="#94A3B8">B</text>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 80 70" fill="none">
+  <path fill="#fbf0df" stroke="#000" stroke-width="3" d="M71.094 39.394c0 15.672-13.993 28.378-31.25 28.378S8.594 55.066 8.594 39.394c0-15.673 13.993-28.38 31.25-28.38 17.257 0 31.25 12.707 31.25 28.38Z"/>
+  <ellipse cx="24.158" cy="41.336" fill="#000" rx="5.429" ry="5.596"/>
+  <ellipse cx="55.548" cy="41.336" fill="#000" rx="5.429" ry="5.596"/>
+  <ellipse cx="25.847" cy="39.655" fill="#fff" rx="2.174" ry="2.236"/>
+  <ellipse cx="57.229" cy="39.655" fill="#fff" rx="2.174" ry="2.236"/>
+  <ellipse cx="39.844" cy="49.695" fill="#feb0ae" rx="5.691" ry="2.796"/>
+  <path fill="#ccbea7" fill-rule="evenodd" d="M26.676 25.22a7.349 7.349 0 0 1 4.342-6.696 7.35 7.35 0 0 1 7.877 1.01c1.602-2.92 4.694-4.899 8.252-4.899 3.636 0 6.785 2.063 8.354 5.087a7.348 7.348 0 0 1 8.655 7.237 7.335 7.335 0 0 1-1.188 4.027c-2.124-6.89-10.652-12.33-21.103-12.33-10.122 0-18.42 5.154-20.855 11.763a7.328 7.328 0 0 1-.833-3.433 7.352 7.352 0 0 1 6.5-7.298v.532Z" clip-rule="evenodd"/>
+  <path stroke="#000" stroke-linecap="round" stroke-width="2" d="M32 53c2.168 2.537 6.016 3.744 8.064 3.854 2.048.11 5.74-.893 7.936-3.854"/>
 </svg>
