@@ -7,7 +7,6 @@ interface Project {
   tags: string[];
   link?: string;
   github?: string;
-  year: string;
 }
 
 const projects: Project[] = [
@@ -16,14 +15,18 @@ const projects: Project[] = [
     description: 'Online multiplayer tic-tac-toe — play against friends or strangers in real time.',
     tags: ['Game', 'Multiplayer', 'Web'],
     link: 'http://44.195.152.236',
-    year: '2025',
   },
   {
     title: 'Snip.it URL Shortener',
     description: 'A fast URL shortener with a Bun + Hono backend and React UI.',
     tags: ['URL Shortener', 'Hono', 'Bun', 'React'],
     link: 'http://44.195.152.236:3000/',
-    year: '2026',
+  },
+  {
+    title: 'Todo TUI',
+    description: 'A terminal-based to-do application built with Go.',
+    tags: ['Go', 'TUI', 'CLI'],
+    github: 'https://github.com/shreshthK/todo-tui',
   },
 ];
 
@@ -34,15 +37,10 @@ const ProjectRow = ({ project, index }: { project: Project; index: number }) => 
   >
     <div className="py-5 md:py-6 px-2 flex flex-col sm:flex-row sm:items-center gap-3 sm:gap-6
       hover:bg-secondary/30 transition-colors duration-200">
-      {/* Index + Year */}
-      <div className="flex items-center gap-4 shrink-0">
-        <span className="font-mono text-[10px] tracking-wider text-accent w-6">
-          {String(index + 1).padStart(2, '0')}
-        </span>
-        <span className="font-mono text-[11px] tracking-wide text-muted-foreground w-12">
-          {project.year}
-        </span>
-      </div>
+      {/* Index */}
+      <span className="font-mono text-[10px] tracking-wider text-accent w-6 shrink-0">
+        {String(index + 1).padStart(2, '0')}
+      </span>
 
       {/* Title */}
       <h3 className="font-display font-bold text-foreground text-base sm:w-48 md:w-56 shrink-0
@@ -148,10 +146,7 @@ function Projects() {
             font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground"
           variants={fadeInUp}
         >
-          <div className="flex items-center gap-4">
-            <span className="w-6">#</span>
-            <span className="w-12">Year</span>
-          </div>
+          <span className="w-6">#</span>
           <span className="w-48 md:w-56">Project</span>
           <span className="flex-1">Description</span>
           <span className="hidden lg:block w-40">Stack</span>
