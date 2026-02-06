@@ -1,5 +1,4 @@
 import styles from './HeroStyles.module.css'
-import heroImage from '../../assets/hero-img.png'
 import twitterIconLight from '../../assets/twitter-light.svg'
 import twitterIconDark from '../../assets/twitter-dark.svg'
 import linkedinIconLight from '../../assets/linkedin-light.svg'
@@ -9,7 +8,7 @@ import githubIconDark from '../../assets/github-dark.svg'
 import CV from '../../assets/shreshth resume.pdf'
 import { useTheme, Theme } from '../../common/ThemeContext'
 import { motion } from 'framer-motion'
-import { fadeInUp, staggerContainer, scaleIn } from '@/lib/animations'
+import { fadeInUp, staggerContainer } from '@/lib/animations'
 
 
 function Hero() {
@@ -30,7 +29,7 @@ function Hero() {
             <div className={styles.bgDecoration} />
 
             <div className={styles.container}>
-                {/* Left side - Text content */}
+                {/* Text content - full width editorial */}
                 <motion.div className={styles.content} variants={staggerContainer}>
                     {/* Role label */}
                     <motion.span
@@ -40,18 +39,37 @@ function Hero() {
                         Senior Software Developer
                     </motion.span>
 
-                    {/* Name - Big, bold, editorial */}
+                    {/* Name - Massive, editorial */}
                     <motion.h1 variants={fadeInUp} className={styles.name}>
                         Shreshth
                         <br />
                         <span className={styles.nameAccent}>Kandari</span>
                     </motion.h1>
 
+                    {/* Thin rule */}
+                    <motion.div className={styles.rule} variants={fadeInUp} />
+
                     {/* Description */}
                     <motion.p className={styles.description} variants={fadeInUp}>
                         Building enterprise-scale applications at <span className={styles.highlight}>Wabtec Corporation</span>.
                         8+ years crafting robust, scalable solutions across healthcare and supply chain domains.
                     </motion.p>
+
+                    {/* Info row - editorial metadata */}
+                    <motion.div className={styles.infoRow} variants={fadeInUp}>
+                        <div className={styles.infoItem}>
+                            <span className={styles.infoLabel}>Location</span>
+                            <span className={styles.infoValue}>Fort Worth, TX</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                            <span className={styles.infoLabel}>Experience</span>
+                            <span className={styles.infoValue}>8+ Years</span>
+                        </div>
+                        <div className={styles.infoItem}>
+                            <span className={styles.infoLabel}>Focus</span>
+                            <span className={styles.infoValue}>Full-Stack Development</span>
+                        </div>
+                    </motion.div>
 
                     {/* CTA + Social */}
                     <motion.div className={styles.actions} variants={fadeInUp}>
@@ -74,7 +92,7 @@ function Hero() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.socialLink}
-                                whileHover={{ scale: 1.1, y: -2 }}
+                                whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                                 aria-label="GitHub"
                             >
@@ -85,7 +103,7 @@ function Hero() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.socialLink}
-                                whileHover={{ scale: 1.1, y: -2 }}
+                                whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                                 aria-label="LinkedIn"
                             >
@@ -96,7 +114,7 @@ function Hero() {
                                 target="_blank"
                                 rel="noopener noreferrer"
                                 className={styles.socialLink}
-                                whileHover={{ scale: 1.1, y: -2 }}
+                                whileHover={{ scale: 1.1 }}
                                 whileTap={{ scale: 0.95 }}
                                 aria-label="Twitter"
                             >
@@ -104,20 +122,6 @@ function Hero() {
                             </motion.a>
                         </div>
                     </motion.div>
-                </motion.div>
-
-                {/* Right side - Image */}
-                <motion.div className={styles.imageContainer} variants={scaleIn}>
-                    <div className={styles.imageWrapper}>
-                        {/* Decorative elements */}
-                        <div className={styles.imageDecor1} />
-                        <div className={styles.imageDecor2} />
-                        <img
-                            src={heroImage}
-                            alt="Shreshth Kandari"
-                            className={styles.heroImage}
-                        />
-                    </div>
                 </motion.div>
             </div>
 
