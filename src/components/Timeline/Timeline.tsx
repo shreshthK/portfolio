@@ -1,230 +1,215 @@
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
-import { fadeInUp, staggerContainer } from '@/lib/animations'
-
-interface TimelineEntry {
-    date: string;
-    title: string;
-    description: string;
-    role: string;
-    company: string;
-    companyUrl?: string;
-    isLatest?: boolean;
-}
-
-const TimelineRow = ({ entry, index, isOpen, onToggle }: {
-    entry: TimelineEntry;
-    index: number;
-    isOpen: boolean;
-    onToggle: () => void;
-}) => (
-    <motion.div
-        variants={fadeInUp}
-        className="border-b border-border last:border-b-0"
-    >
-        {/* Row header - always visible */}
-        <button
-            onClick={onToggle}
-            className="w-full text-left py-5 md:py-6 px-2 flex items-center gap-4 md:gap-8
-                group cursor-pointer hover:bg-secondary/30 transition-colors duration-200"
-        >
-            {/* Index */}
-            <span className="font-mono text-[10px] tracking-wider text-accent shrink-0 w-6">
-                {String(index + 1).padStart(2, '0')}
-            </span>
-
-            {/* Date */}
-            <span className="font-mono text-[11px] tracking-wide text-muted-foreground shrink-0 w-28 md:w-40 hidden sm:block">
-                {entry.date}
-            </span>
-
-            {/* Company */}
-            <span className="font-display text-sm font-semibold text-foreground shrink-0 w-24 md:w-36">
-                {entry.company}
-            </span>
-
-            {/* Title */}
-            <span className="font-body text-sm text-muted-foreground flex-1 truncate group-hover:text-foreground transition-colors duration-200">
-                {entry.title}
-            </span>
-
-            {/* Current badge */}
-            {entry.isLatest && (
-                <span className="hidden md:inline-block px-2 py-0.5 text-[10px] font-mono tracking-wider uppercase
-                    bg-accent/10 text-accent border border-accent/20 shrink-0">
-                    Current
-                </span>
-            )}
-
-            {/* Toggle indicator */}
-            <motion.svg
-                className="w-4 h-4 text-muted-foreground shrink-0"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-                animate={{ rotate: isOpen ? 180 : 0 }}
-                transition={{ duration: 0.2 }}
-            >
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M19 9l-7 7-7-7" />
-            </motion.svg>
-        </button>
-
-        {/* Expanded content */}
-        <AnimatePresence>
-            {isOpen && (
-                <motion.div
-                    initial={{ height: 0, opacity: 0 }}
-                    animate={{ height: 'auto', opacity: 1 }}
-                    exit={{ height: 0, opacity: 0 }}
-                    transition={{ duration: 0.3, ease: 'easeInOut' }}
-                    className="overflow-hidden"
-                >
-                    <div className="px-2 pb-6 pl-10 md:pl-14">
-                        <div className="max-w-2xl ml-0 sm:ml-40 md:ml-48">
-                            {/* Mobile date */}
-                            <span className="sm:hidden font-mono text-[10px] tracking-wide text-muted-foreground block mb-2">
-                                {entry.date}
-                            </span>
-
-                            {/* Description */}
-                            <p className="text-sm text-muted-foreground leading-relaxed mb-3">
-                                {entry.description}
-                            </p>
-
-                            {/* Role */}
-                            <div className="flex items-center gap-2 text-xs">
-                                <span className="text-foreground font-medium">{entry.role}</span>
-                                {entry.companyUrl && (
-                                    <>
-                                        <span className="text-border">&mdash;</span>
-                                        <a
-                                            href={entry.companyUrl}
-                                            target="_blank"
-                                            rel="noopener noreferrer"
-                                            className="text-accent hover:underline underline-offset-2"
-                                        >
-                                            {entry.company}
-                                        </a>
-                                    </>
-                                )}
-                            </div>
-                        </div>
-                    </div>
-                </motion.div>
-            )}
-        </AnimatePresence>
-    </motion.div>
-)
+import { useMemo, useState } from 'react';
+import { motion } from 'framer-motion';
+import { fadeInUp, staggerContainer } from '@/lib/animations';
+import { timelineEntries } from '@/data/timeline';
+import TimelineRailScene from '@/components/Timeline/TimelineRailScene';
+import { SectionCanvas } from '@/components/scene/SectionCanvas';
+import { useSceneConfig } from '@/lib/performance';
 
 function Timeline() {
-    const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const sceneConfig = useSceneConfig();
+  const [selectedId, setSelectedId] = useState<string>(timelineEntries[0].id);
 
-    const timelineData: TimelineEntry[] = [
-        {
-            date: "2023 - Present",
-            title: "Sourcing Application",
-            description: "Developed sourcing application features to streamline procurement processes and vendor management.",
-            role: "Senior Software Developer lvl 2",
-            company: "Wabtec, Texas",
-            companyUrl: "https://www.wabteccorp.com/",
-            isLatest: true
-        },
-        {
-            date: "2023 — 2024",
-            title: "Task Flow Manager — Job Scheduling",
-            description: "Created a job scheduling system to schedule tasks including DB scripts, API calls, and other automated tasks.",
-            role: "Senior Software Developer lvl 2",
-            company: "Wabtec, Texas",
-            companyUrl: "https://www.wabteccorp.com/",
-        },
-        {
-            date: "2023 — 2024",
-            title: "Multi-tenant Support Implementation",
-            description: "Made frontend/backend database agnostic to support multi-tenancy, integrating multiple enterprise databases including Oracle.",
-            role: "Senior Software Developer",
-            company: "Wabtec, Texas",
-            companyUrl: "https://www.wabteccorp.com/",
-        },
-        {
-            date: "2021 — 2022",
-            title: "Supply Chain Connect — Angular Migration",
-            description: "Led the refactoring of the codebase from AngularJS to Angular using a hybrid approach to ensure smooth transition.",
-            role: "Staff Software Developer",
-            company: "Wabtec, Texas",
-            companyUrl: "https://www.wabteccorp.com/",
-        },
-        {
-            date: "2018 — 2019",
-            title: "Data Migration from Oracle",
-            description: "Created a data migration tool to migrate data from Oracle to PostgreSQL using NodeJS and Oracle's NodeJS driver.",
-            role: "Software Developer",
-            company: "General Electric, New Orleans, LA",
-        },
-        {
-            date: "2016 — 2023",
-            title: "Supply Chain Connect Platform",
-            description: "Developed enterprise supply chain management solutions using AngularJS, Java, and PostgreSQL with Google Polymers and Angular Material.",
-            role: "Software Developer",
-            company: "General Electric, New Orleans, LA",
-        },
-        {
-            date: "2014 — 2015",
-            title: "UPMC Mobile Application",
-            description: "Built mobile healthcare applications using Backbone.js and Java Spring Boot for the UPMC health system.",
-            role: "Software Developer Contractor",
-            company: "UPMC",
-            companyUrl: "https://www.upmc.com/",
-        },
-    ]
+  const selectedIndex = useMemo(
+    () => timelineEntries.findIndex((entry) => entry.id === selectedId),
+    [selectedId],
+  );
 
-    return (
-        <motion.section
-            id="timeline"
-            className="py-24 md:py-32 bg-secondary/30"
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, amount: 0.1 }}
-            variants={staggerContainer}
-        >
-            <div className="max-w-5xl mx-auto px-6">
-                {/* Section header */}
-                <motion.div className="mb-12 md:mb-16" variants={fadeInUp}>
-                    <span className="font-mono text-xs tracking-[0.2em] uppercase text-accent mb-4 block">
-                        Career Journey
-                    </span>
-                    <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground">
-                        Experience
-                    </h2>
-                </motion.div>
+  const selectedEntry = selectedIndex >= 0 ? timelineEntries[selectedIndex] : timelineEntries[0];
 
-                {/* Table header */}
-                <motion.div
-                    className="hidden sm:flex items-center gap-4 md:gap-8 px-2 pb-3 border-b border-border
-                        font-mono text-[10px] tracking-[0.15em] uppercase text-muted-foreground"
-                    variants={fadeInUp}
-                >
-                    <span className="w-6">#</span>
-                    <span className="w-28 md:w-40">Period</span>
-                    <span className="w-24 md:w-36">Company</span>
-                    <span className="flex-1">Project</span>
-                    <span className="w-4" />
-                </motion.div>
+  const selectRelative = (offset: number) => {
+    const total = timelineEntries.length;
+    const next = (selectedIndex + offset + total) % total;
+    setSelectedId(timelineEntries[next].id);
+  };
 
-                {/* Timeline rows */}
-                <motion.div variants={staggerContainer}>
-                    {timelineData.map((entry, index) => (
-                        <TimelineRow
-                            key={index}
-                            entry={entry}
-                            index={index}
-                            isOpen={openIndex === index}
-                            onToggle={() => setOpenIndex(openIndex === index ? null : index)}
-                        />
-                    ))}
-                </motion.div>
+  return (
+    <motion.section
+      id="timeline"
+      className="py-24 md:py-28 bg-secondary/20 border-y border-border/35"
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.12 }}
+      variants={staggerContainer}
+    >
+      <div className="max-w-6xl mx-auto px-6">
+        <motion.div className="mb-12 md:mb-14" variants={fadeInUp}>
+          <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-accent mb-4 block">
+            Execution Rail
+          </span>
+          <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground">Experience</h2>
+        </motion.div>
+
+        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 lg:gap-10 items-start">
+          <motion.div
+            variants={fadeInUp}
+            className="rounded-md border border-border/60 overflow-hidden bg-card/75"
+          >
+            <div className="relative h-[420px] border-b border-border/60 overflow-hidden">
+              <SectionCanvas
+                className="absolute inset-0"
+                config={sceneConfig}
+                qualityPolicy={{ allowOnLow: true, disableInteractionOnLow: true }}
+                camera={{ position: [0.9, 0, 6], fov: 38 }}
+                fallback={
+                  <div className="h-full bg-[radial-gradient(circle_at_75%_18%,hsl(211_80%_62%_/_0.16),transparent_45%),radial-gradient(circle_at_24%_72%,hsl(33_90%_62%_/_0.13),transparent_40%),linear-gradient(180deg,var(--card),var(--background))]" />
+                }
+              >
+                <TimelineRailScene entries={timelineEntries} selectedId={selectedId} config={sceneConfig} />
+              </SectionCanvas>
+
+              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(180deg,transparent_0%,color-mix(in_oklab,var(--background)_84%,transparent)_100%)]" />
+
+              <div className="absolute left-5 top-4 z-10">
+                <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-accent">
+                  Journey Map
+                </span>
+              </div>
+
+              <div className="absolute left-5 right-5 top-12 bottom-6 pointer-events-none">
+                <div className="absolute left-[7px] top-1 bottom-1 w-px bg-border/80" />
+                <div className="h-full flex flex-col justify-between">
+                  {timelineEntries.map((entry) => {
+                    const isActive = entry.id === selectedId;
+                    const year = entry.period.slice(0, 4);
+
+                    return (
+                      <div key={`rail-marker-${entry.id}`} className="flex items-center gap-2.5">
+                        <span
+                          className={`relative size-4 rounded-full border ${
+                            isActive ? 'border-accent bg-accent/20' : 'border-border bg-background/70'
+                          }`}
+                        >
+                          <span
+                            className={`absolute inset-[3px] rounded-full ${
+                              isActive ? 'bg-accent' : 'bg-muted-foreground/70'
+                            }`}
+                          />
+                        </span>
+                        <span
+                          className={`font-mono text-[10px] tracking-[0.14em] uppercase ${
+                            isActive ? 'text-accent' : 'text-muted-foreground'
+                          }`}
+                        >
+                          {year}
+                        </span>
+                      </div>
+                    );
+                  })}
+                </div>
+              </div>
             </div>
-        </motion.section>
-    )
+
+            <div className="p-3 flex items-center justify-between border-t border-border/60">
+              <button
+                className="font-mono text-[10px] uppercase tracking-[0.16em] px-2 py-1 border border-border/60 text-muted-foreground hover:text-accent"
+                onClick={() => selectRelative(-1)}
+                aria-label="Select previous role"
+              >
+                Prev
+              </button>
+              <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-muted-foreground">
+                {String(selectedIndex + 1).padStart(2, '0')} / {String(timelineEntries.length).padStart(2, '0')}
+              </span>
+              <button
+                className="font-mono text-[10px] uppercase tracking-[0.16em] px-2 py-1 border border-border/60 text-muted-foreground hover:text-accent"
+                onClick={() => selectRelative(1)}
+                aria-label="Select next role"
+              >
+                Next
+              </button>
+            </div>
+          </motion.div>
+
+          <motion.div variants={staggerContainer} className="space-y-4">
+            {timelineEntries.map((entry, index) => {
+              const isActive = entry.id === selectedId;
+              return (
+                <motion.button
+                  key={entry.id}
+                  variants={fadeInUp}
+                  onClick={() => setSelectedId(entry.id)}
+                  onKeyDown={(event) => {
+                    if (event.key === 'ArrowDown') {
+                      event.preventDefault();
+                      selectRelative(1);
+                    }
+                    if (event.key === 'ArrowUp') {
+                      event.preventDefault();
+                      selectRelative(-1);
+                    }
+                  }}
+                  className={`w-full text-left border px-4 py-4 transition-colors duration-200 ${
+                    isActive
+                      ? 'border-accent/80 bg-accent/10'
+                      : 'border-border/50 bg-card/60 hover:bg-card/80'
+                  }`}
+                  aria-pressed={isActive}
+                >
+                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                    <span className="font-mono text-[10px] tracking-[0.16em] text-accent w-7 shrink-0">
+                      {String(index + 1).padStart(2, '0')}
+                    </span>
+                    <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-muted-foreground shrink-0 md:w-36">
+                      {entry.period}
+                    </span>
+                    <span className="text-sm font-semibold text-foreground flex-1">{entry.title}</span>
+                  </div>
+                </motion.button>
+              );
+            })}
+
+            <motion.article
+              variants={fadeInUp}
+              className="mt-6 border border-border/70 bg-card/85 p-5"
+            >
+              <div className="flex flex-wrap items-center gap-2 mb-2">
+                <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-[var(--accent-warm)]">
+                  Active Context
+                </span>
+                {selectedEntry.featured && (
+                  <span className="font-mono text-[10px] tracking-[0.16em] uppercase border border-[var(--accent-warm)] px-2 py-0.5 text-[var(--accent-warm)]">
+                    Current
+                  </span>
+                )}
+              </div>
+
+              <h3 className="text-2xl font-display text-foreground mb-2">{selectedEntry.title}</h3>
+              <p className="text-sm text-muted-foreground leading-relaxed mb-4">{selectedEntry.description}</p>
+
+              <div className="text-xs text-foreground mb-3">
+                <span className="font-semibold">{selectedEntry.role}</span>
+                <span className="text-muted-foreground"> at </span>
+                {selectedEntry.companyUrl ? (
+                  <a
+                    href={selectedEntry.companyUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="underline underline-offset-2 hover:text-[var(--accent-warm)]"
+                  >
+                    {selectedEntry.company}
+                  </a>
+                ) : (
+                  <span>{selectedEntry.company}</span>
+                )}
+              </div>
+
+              <div className="flex flex-wrap gap-2">
+                {selectedEntry.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="px-2 py-1 font-mono text-[10px] uppercase tracking-[0.14em] border border-border/60 text-muted-foreground"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </motion.article>
+          </motion.div>
+        </div>
+      </div>
+    </motion.section>
+  );
 }
 
-export default Timeline
+export default Timeline;

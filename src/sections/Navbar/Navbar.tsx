@@ -1,15 +1,7 @@
-import { useTheme } from "@/common/ThemeContext";
-import { Theme } from "@/common/ThemeContext";
-import themeIconLight from '../../assets/sun.svg'
-import themeIconDark from '../../assets/moon.svg'
-import { toast } from "sonner";
 import { motion } from "framer-motion";
 import { slideDown } from "@/lib/animations";
 
 function Navbar() {
-  const { theme, setTheme } = useTheme();
-  const themeIcon = theme === Theme.Light ? themeIconLight : themeIconDark;
-
   return (
     <motion.div
       initial="hidden"
@@ -81,18 +73,6 @@ function Navbar() {
               >
                 Projects
               </a>
-              
-              {/* Theme toggle */}
-              <button
-                className="flex items-center justify-center size-9 rounded-full border border-border bg-background hover:bg-secondary hover:border-accent/30 focus:outline-none transition-all duration-200"
-                onClick={() => {
-                  setTheme(theme === Theme.Light ? Theme.Dark : Theme.Light);
-                  toast(`Theme: ${theme === Theme.Light ? "Dark" : "Light"} mode`)
-                }}
-                aria-label="Toggle theme"
-              >
-                <img className="w-4 h-4 opacity-70" src={themeIcon} alt="" />
-              </button>
             </div>
           </div>
         </nav>

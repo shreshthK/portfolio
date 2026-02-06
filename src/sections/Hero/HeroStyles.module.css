@@ -1,247 +1,217 @@
-/* Hero Section - Editorial / Magazine Design */
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
-  flex-direction: column;
-  justify-content: flex-end;
+  align-items: center;
   overflow: hidden;
-  padding: 8rem 1.5rem 4rem;
+  isolation: isolate;
+  padding: 7.5rem 1.25rem 3.5rem;
+  border-bottom: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
 }
 
-/* Subtle background decoration */
-.bgDecoration {
+.canvas {
   position: absolute;
-  top: 0;
-  right: -10%;
-  width: 60vw;
-  height: 60vw;
-  max-width: 700px;
-  max-height: 700px;
-  background: radial-gradient(
-    circle,
-    hsl(12 76% 61% / 0.05) 0%,
-    transparent 60%
-  );
-  border-radius: 50%;
-  pointer-events: none;
+  inset: 0;
   z-index: 0;
 }
 
-:global(.dark) .bgDecoration {
-  background: radial-gradient(
-    circle,
-    hsl(12 80% 65% / 0.06) 0%,
-    transparent 60%
-  );
+.canvasFallback {
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 68% 22%, hsl(214 64% 58% / 0.16) 0%, transparent 45%),
+    radial-gradient(circle at 25% 80%, hsl(32 96% 58% / 0.12) 0%, transparent 40%),
+    linear-gradient(160deg, hsl(210 30% 95%) 0%, hsl(210 28% 92%) 55%, hsl(210 26% 90%) 100%);
+}
+
+:global(.dark) .canvasFallback {
+  background:
+    radial-gradient(circle at 68% 22%, hsl(214 64% 58% / 0.2) 0%, transparent 45%),
+    radial-gradient(circle at 25% 80%, hsl(32 96% 58% / 0.15) 0%, transparent 40%),
+    linear-gradient(160deg, hsl(223 35% 7%) 0%, hsl(221 30% 5%) 55%, hsl(212 34% 4%) 100%);
+}
+
+.overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+  background:
+    repeating-linear-gradient(
+      to right,
+      hsl(212 19% 65% / 0.25) 0,
+      hsl(212 19% 65% / 0.25) 1px,
+      transparent 1px,
+      transparent 85px
+    ),
+    linear-gradient(180deg, hsl(0 0% 100% / 0.08) 0%, hsl(210 30% 95% / 0.72) 75%);
+}
+
+:global(.dark) .overlay {
+  background:
+    repeating-linear-gradient(
+      to right,
+      hsl(212 19% 28% / 0.12) 0,
+      hsl(212 19% 28% / 0.12) 1px,
+      transparent 1px,
+      transparent 85px
+    ),
+    linear-gradient(180deg, hsl(219 43% 5% / 0.1) 0%, hsl(221 36% 5% / 0.82) 75%);
 }
 
 .container {
   position: relative;
-  z-index: 1;
-  max-width: 1200px;
-  margin: 0 auto;
+  z-index: 2;
   width: 100%;
-  display: flex;
-  flex-direction: column;
-  gap: 3rem;
+  max-width: 1180px;
+  margin: 0 auto;
 }
 
-/* Content area */
 .content {
   display: flex;
   flex-direction: column;
-  gap: 2rem;
+  max-width: 740px;
+  gap: 1.3rem;
 }
 
-/* Role label - Monospace uppercase */
 .roleLabel {
   font-family: var(--font-mono);
-  font-size: 0.7rem;
-  font-weight: 500;
+  font-size: 0.69rem;
+  letter-spacing: 0.22em;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
   color: var(--accent);
-  display: flex;
-  align-items: center;
-  gap: 1rem;
 }
 
-.roleLabel::before {
-  content: '';
-  display: block;
-  width: 40px;
-  height: 1px;
-  background: var(--accent);
-}
-
-/* Name - Massive editorial typography */
 .name {
-  font-family: var(--font-display);
-  font-size: clamp(3.5rem, 12vw, 8rem);
-  font-weight: 800;
-  line-height: 0.9;
-  letter-spacing: -0.04em;
+  margin: 0;
+  line-height: 0.92;
+  font-weight: 700;
+  letter-spacing: -0.03em;
+  font-size: clamp(3.3rem, 11vw, 8.5rem);
   color: var(--foreground);
 }
 
 .nameAccent {
-  color: var(--accent);
+  color: var(--accent-warm);
   font-style: italic;
 }
 
-/* Thin horizontal rule */
-.rule {
-  width: 100%;
-  height: 1px;
-  background: var(--border);
-  margin: 0.5rem 0;
-}
-
-/* Description */
 .description {
-  font-size: 1.125rem;
+  margin: 0;
+  max-width: 640px;
+  font-family: var(--font-body);
+  font-size: clamp(1rem, 2vw, 1.2rem);
   line-height: 1.8;
   color: var(--muted-foreground);
-  max-width: 560px;
-  font-family: var(--font-body);
 }
 
 .highlight {
   color: var(--foreground);
-  font-weight: 500;
 }
 
-/* Info row - editorial metadata */
-.infoRow {
+.metaRow {
   display: flex;
   flex-wrap: wrap;
-  gap: 2rem;
-  padding-top: 0.5rem;
+  gap: 0.9rem;
 }
 
-.infoItem {
-  display: flex;
-  flex-direction: column;
-  gap: 0.25rem;
-}
-
-.infoLabel {
+.metaRow span {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
-  font-weight: 500;
+  font-size: 0.63rem;
+  letter-spacing: 0.14em;
   text-transform: uppercase;
-  letter-spacing: 0.15em;
   color: var(--muted-foreground);
+  border: 1px solid color-mix(in oklab, var(--border) 70%, transparent);
+  background: color-mix(in oklab, var(--card) 88%, transparent);
+  padding: 0.35rem 0.6rem;
 }
 
-.infoValue {
-  font-family: var(--font-display);
-  font-size: 0.95rem;
-  font-weight: 600;
-  color: var(--foreground);
-}
-
-/* Actions container */
 .actions {
+  margin-top: 0.35rem;
   display: flex;
   flex-direction: column;
-  gap: 1.5rem;
-  margin-top: 0.5rem;
+  gap: 1rem;
 }
 
-/* Primary CTA button */
 .primaryBtn {
+  width: fit-content;
   display: inline-flex;
   align-items: center;
-  justify-content: center;
-  gap: 0.75rem;
-  padding: 0.875rem 2rem;
+  gap: 0.5rem;
+  border: 1px solid color-mix(in oklab, var(--accent) 70%, transparent);
   background: var(--foreground);
   color: var(--background);
   font-family: var(--font-mono);
-  font-size: 0.75rem;
-  font-weight: 500;
-  letter-spacing: 0.1em;
+  font-size: 0.72rem;
+  letter-spacing: 0.09em;
   text-transform: uppercase;
-  border-radius: 0;
-  text-decoration: none;
-  transition: all 0.3s ease;
-  width: fit-content;
+  padding: 0.82rem 1.25rem;
+  transition: border-color 0.2s ease, transform 0.2s ease, background 0.2s ease;
 }
 
 .primaryBtn:hover {
+  border-color: color-mix(in oklab, var(--accent-warm) 70%, transparent);
   background: var(--accent);
   color: var(--accent-foreground);
 }
 
-/* Social links */
+.prompt {
+  color: var(--accent-warm);
+}
+
 .socialLinks {
   display: flex;
   gap: 0.5rem;
 }
 
 .socialLink {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   width: 40px;
   height: 40px;
-  border: 1px solid var(--border);
-  transition: all 0.2s ease;
-}
-
-.socialLink:hover {
-  border-color: var(--accent);
-  background: hsl(12 76% 61% / 0.05);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid color-mix(in oklab, var(--border) 75%, transparent);
+  background: color-mix(in oklab, var(--card) 88%, transparent);
 }
 
 .socialLink img {
-  width: 18px;
-  height: 18px;
-  opacity: 0.6;
-  transition: opacity 0.2s ease;
+  width: 17px;
+  height: 17px;
+  opacity: 0.78;
 }
 
-.socialLink:hover img {
-  opacity: 1;
-}
-
-/* Scroll indicator */
 .scrollIndicator {
   position: absolute;
-  bottom: 2rem;
   left: 50%;
+  bottom: 1.2rem;
   transform: translateX(-50%);
+  z-index: 2;
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 0.5rem;
+  gap: 0.45rem;
 }
 
 .scrollIndicator span {
   font-family: var(--font-mono);
-  font-size: 0.6rem;
+  font-size: 0.58rem;
+  letter-spacing: 0.19em;
   text-transform: uppercase;
-  letter-spacing: 0.2em;
   color: var(--muted-foreground);
 }
 
 .scrollLine {
   width: 1px;
-  height: 40px;
-  background: linear-gradient(
-    to bottom,
-    var(--accent) 0%,
-    transparent 100%
-  );
-  animation: scrollPulse 2s ease-in-out infinite;
+  height: 36px;
+  background: linear-gradient(to bottom, var(--accent), transparent);
+  animation: pulse 2s ease-in-out infinite;
 }
 
-@keyframes scrollPulse {
-  0%, 100% {
-    opacity: 0.3;
-    transform: scaleY(0.8);
+@keyframes pulse {
+  0%,
+  100% {
+    opacity: 0.35;
+    transform: scaleY(0.85);
   }
   50% {
     opacity: 1;
@@ -249,42 +219,19 @@
   }
 }
 
-/* Tablet and up */
 @media (width >= 768px) {
   .hero {
-    padding: 8rem 2rem 4rem;
-  }
-
-  .content {
-    gap: 2rem;
+    padding-inline: 2rem;
   }
 
   .actions {
-    flex-direction: row;
     align-items: center;
-    gap: 2rem;
-  }
-
-  .infoRow {
-    gap: 3rem;
+    flex-direction: row;
   }
 }
 
-/* Desktop */
 @media (width >= 1024px) {
   .hero {
-    padding: 0 3rem;
-    justify-content: center;
-  }
-
-  .description {
-    font-size: 1.25rem;
-  }
-}
-
-/* Large desktop */
-@media (width >= 1400px) {
-  .container {
-    max-width: 1400px;
+    padding-inline: 3rem;
   }
 }

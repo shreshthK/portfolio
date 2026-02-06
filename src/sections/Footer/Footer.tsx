@@ -1,18 +1,13 @@
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
-import { useTheme, Theme } from '@/common/ThemeContext';
-import githubIconLight from '../../assets/github-light.svg';
 import githubIconDark from '../../assets/github-dark.svg';
-import linkedinIconLight from '../../assets/linkedin-light.svg';
 import linkedinIconDark from '../../assets/linkedin-dark.svg';
-import twitterIconLight from '../../assets/twitter-light.svg';
 import twitterIconDark from '../../assets/twitter-dark.svg';
 
 function Footer() {
-  const { theme } = useTheme();
-  const githubIcon = theme === Theme.Light ? githubIconLight : githubIconDark;
-  const linkedinIcon = theme === Theme.Light ? linkedinIconLight : linkedinIconDark;
-  const twitterIcon = theme === Theme.Light ? twitterIconLight : twitterIconDark;
+  const githubIcon = githubIconDark;
+  const linkedinIcon = linkedinIconDark;
+  const twitterIcon = twitterIconDark;
 
   return (
     <motion.footer
