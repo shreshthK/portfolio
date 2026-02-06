@@ -121,11 +121,11 @@ function Timeline() {
 
     const timelineData: TimelineEntry[] = [
         {
-            date: "2023 — Present",
+            date: "2023 - Present",
             title: "Sourcing Application",
             description: "Developed sourcing application features to streamline procurement processes and vendor management.",
             role: "Senior Software Developer lvl 2",
-            company: "Wabtec",
+            company: "Wabtec, Texas",
             companyUrl: "https://www.wabteccorp.com/",
             isLatest: true
         },
@@ -134,7 +134,7 @@ function Timeline() {
             title: "Task Flow Manager — Job Scheduling",
             description: "Created a job scheduling system to schedule tasks including DB scripts, API calls, and other automated tasks.",
             role: "Senior Software Developer lvl 2",
-            company: "Wabtec",
+            company: "Wabtec, Texas",
             companyUrl: "https://www.wabteccorp.com/",
         },
         {
@@ -142,7 +142,7 @@ function Timeline() {
             title: "Multi-tenant Support Implementation",
             description: "Made frontend/backend database agnostic to support multi-tenancy, integrating multiple enterprise databases including Oracle.",
             role: "Senior Software Developer",
-            company: "Wabtec",
+            company: "Wabtec, Texas",
             companyUrl: "https://www.wabteccorp.com/",
         },
         {
@@ -150,7 +150,7 @@ function Timeline() {
             title: "Supply Chain Connect — Angular Migration",
             description: "Led the refactoring of the codebase from AngularJS to Angular using a hybrid approach to ensure smooth transition.",
             role: "Staff Software Developer",
-            company: "Wabtec",
+            company: "Wabtec, Texas",
             companyUrl: "https://www.wabteccorp.com/",
         },
         {
@@ -158,17 +158,17 @@ function Timeline() {
             title: "Data Migration from Oracle",
             description: "Created a data migration tool to migrate data from Oracle to PostgreSQL using NodeJS and Oracle's NodeJS driver.",
             role: "Software Developer",
-            company: "General Electric",
+            company: "General Electric, New Orleans, LA",
         },
         {
-            date: "2017 — 2023",
+            date: "2016 — 2023",
             title: "Supply Chain Connect Platform",
             description: "Developed enterprise supply chain management solutions using AngularJS, Java, and PostgreSQL with Google Polymers and Angular Material.",
             role: "Software Developer",
-            company: "General Electric",
+            company: "General Electric, New Orleans, LA",
         },
         {
-            date: "2016 — 2017",
+            date: "2014 — 2015",
             title: "UPMC Mobile Application",
             description: "Built mobile healthcare applications using Backbone.js and Java Spring Boot for the UPMC health system.",
             role: "Software Developer Contractor",
