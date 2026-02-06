@@ -1,99 +1,76 @@
-@import "tailwindcss";
+@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500;600&family=Sora:wght@500;600;700;800&display=swap');
+@import 'tailwindcss';
 
-@plugin "tailwindcss-animate";
+@plugin 'tailwindcss-animate';
 
 @custom-variant dark (&:where(.dark, .dark *));
 
 :root {
-  /* Typography */
-  --font-display: 'Syne', sans-serif;
-  --font-body: 'DM Sans', sans-serif;
+  --font-display: 'Sora', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
   --font-mono: 'JetBrains Mono', monospace;
 
-  /* New Refined Color Palette - Warm & Sophisticated */
-  --background: hsl(40 20% 98%);
-  --foreground: hsl(20 10% 12%);
-  --card: hsl(40 15% 96%);
-  --card-foreground: hsl(20 10% 12%);
-  --popover: hsl(40 20% 98%);
-  --popover-foreground: hsl(20 10% 12%);
-  --primary: hsl(20 10% 12%);
-  --primary-foreground: hsl(40 20% 98%);
-  --secondary: hsl(40 10% 92%);
-  --secondary-foreground: hsl(20 10% 20%);
-  --muted: hsl(40 10% 92%);
-  --muted-foreground: hsl(20 5% 45%);
+  --background: hsl(210 25% 97%);
+  --foreground: hsl(222 34% 10%);
+  --card: hsl(210 27% 94%);
+  --card-foreground: hsl(222 34% 10%);
+  --popover: hsl(210 27% 94%);
+  --popover-foreground: hsl(222 34% 10%);
+  --primary: hsl(222 34% 10%);
+  --primary-foreground: hsl(210 25% 97%);
+  --secondary: hsl(211 30% 90%);
+  --secondary-foreground: hsl(222 24% 24%);
+  --muted: hsl(211 30% 90%);
+  --muted-foreground: hsl(217 16% 40%);
 
-  /* Accent - Coral/Terracotta for warmth */
-  --accent: hsl(12 76% 61%);
-  --accent-foreground: hsl(0 0% 100%);
-  --accent-secondary: hsl(160 60% 40%);
+  --accent: hsl(211 74% 67%);
+  --accent-foreground: hsl(210 25% 97%);
+  --accent-cold: hsl(211 74% 67%);
+  --accent-warm: hsl(33 90% 62%);
 
-  --destructive: hsl(0 72% 51%);
+  --destructive: hsl(0 68% 52%);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(30 15% 88%);
-  --input: hsl(30 15% 88%);
-  --ring: hsl(12 76% 61%);
+  --border: hsl(214 25% 82%);
+  --input: hsl(214 25% 82%);
+  --ring: hsl(211 74% 67%);
 
-  /* Chart colors - Refined palette */
-  --chart-1: hsl(12 76% 61%);
-  --chart-2: hsl(160 60% 40%);
-  --chart-3: hsl(45 90% 55%);
-  --chart-4: hsl(220 60% 55%);
-  --chart-5: hsl(280 55% 55%);
+  --chart-1: hsl(211 74% 67%);
+  --chart-2: hsl(33 90% 62%);
+  --chart-3: hsl(185 66% 58%);
+  --chart-4: hsl(269 63% 68%);
+  --chart-5: hsl(154 48% 56%);
 
-  --radius: 0.5rem;
+  --radius: 0.45rem;
 
-  /* Refined shadows with warm tint */
-  --shadow-sm: 0 1px 2px hsla(20, 10%, 12%, 0.04);
-  --shadow-md: 0 4px 12px hsla(20, 10%, 12%, 0.06);
-  --shadow-lg: 0 12px 32px hsla(20, 10%, 12%, 0.08);
-  --shadow-xl: 0 24px 48px hsla(20, 10%, 12%, 0.12);
-  --shadow-glow: 0 0 40px hsla(12, 76%, 61%, 0.15);
-
-  /* Gradient - Warm to cool */
-  --gradient-primary: linear-gradient(135deg, hsl(12 76% 61%) 0%, hsl(160 60% 40%) 100%);
-  --gradient-subtle: linear-gradient(180deg, hsl(40 20% 98%) 0%, hsl(40 15% 94%) 100%);
+  --shadow-sm: 0 1px 2px hsl(222 20% 14% / 0.08);
+  --shadow-md: 0 10px 24px hsl(222 20% 14% / 0.1);
+  --shadow-lg: 0 20px 42px hsl(222 20% 14% / 0.16);
 }
 
 .dark {
-  --background: hsl(220 20% 7%);
-  --foreground: hsl(40 20% 95%);
-  --card: hsl(220 18% 10%);
-  --card-foreground: hsl(40 20% 95%);
-  --popover: hsl(220 18% 10%);
-  --popover-foreground: hsl(40 20% 95%);
-  --primary: hsl(40 20% 95%);
-  --primary-foreground: hsl(220 20% 7%);
-  --secondary: hsl(220 15% 15%);
-  --secondary-foreground: hsl(40 15% 90%);
-  --muted: hsl(220 15% 15%);
-  --muted-foreground: hsl(40 10% 55%);
+  --background: hsl(222 31% 7%);
+  --foreground: hsl(210 25% 95%);
+  --card: hsl(222 24% 10%);
+  --card-foreground: hsl(210 25% 94%);
+  --popover: hsl(222 24% 10%);
+  --popover-foreground: hsl(210 25% 94%);
+  --primary: hsl(210 24% 95%);
+  --primary-foreground: hsl(223 31% 7%);
+  --secondary: hsl(220 17% 15%);
+  --secondary-foreground: hsl(210 16% 83%);
+  --muted: hsl(220 17% 15%);
+  --muted-foreground: hsl(213 12% 64%);
 
-  /* Accent stays vibrant in dark mode */
-  --accent: hsl(12 80% 65%);
-  --accent-foreground: hsl(220 20% 7%);
-  --accent-secondary: hsl(160 65% 50%);
+  --accent: hsl(211 74% 67%);
+  --accent-foreground: hsl(221 32% 8%);
+  --accent-cold: hsl(211 74% 67%);
+  --accent-warm: hsl(33 90% 62%);
 
-  --destructive: hsl(0 62.8% 40%);
+  --destructive: hsl(0 68% 52%);
   --destructive-foreground: hsl(0 0% 98%);
-  --border: hsl(220 15% 18%);
-  --input: hsl(220 15% 18%);
-  --ring: hsl(12 80% 65%);
-
-  /* Chart colors - Brighter for dark mode */
-  --chart-1: hsl(12 80% 65%);
-  --chart-2: hsl(160 65% 50%);
-  --chart-3: hsl(45 95% 60%);
-  --chart-4: hsl(220 70% 60%);
-  --chart-5: hsl(280 60% 60%);
-
-  /* Dark mode shadows */
-  --shadow-sm: 0 1px 2px hsla(0, 0%, 0%, 0.2);
-  --shadow-md: 0 4px 12px hsla(0, 0%, 0%, 0.3);
-  --shadow-lg: 0 12px 32px hsla(0, 0%, 0%, 0.4);
-  --shadow-xl: 0 24px 48px hsla(0, 0%, 0%, 0.5);
-  --shadow-glow: 0 0 60px hsla(12, 80%, 65%, 0.2);
+  --border: hsl(214 21% 24%);
+  --input: hsl(214 21% 24%);
+  --ring: hsl(211 74% 67%);
 }
 
 @theme inline {
@@ -134,31 +111,46 @@
   * {
     @apply border-border outline-ring/50;
   }
+
   html {
     scroll-behavior: smooth;
   }
+
   body {
     @apply bg-background text-foreground;
     font-family: var(--font-body);
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
+    background-image:
+      radial-gradient(circle at 12% 12%, hsl(211 67% 53% / 0.12) 0%, transparent 38%),
+      radial-gradient(circle at 88% 82%, hsl(33 90% 62% / 0.1) 0%, transparent 36%);
   }
 
-  /* Editorial typography */
-  h1, h2, h3, h4, h5, h6 {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
     font-family: var(--font-display);
     font-weight: 700;
     letter-spacing: -0.02em;
-    line-height: 1.1;
+    line-height: 1.08;
   }
 
-  code, pre {
+  code,
+  pre {
     font-family: var(--font-mono);
   }
 
-  /* Selection styling */
   ::selection {
-    background: hsl(var(--accent) / 0.2);
-    color: inherit;
+    background: hsl(211 74% 67% / 0.22);
+    color: var(--foreground);
   }
+}
+
+.dark body {
+  background-image:
+    radial-gradient(circle at 12% 12%, hsl(211 67% 53% / 0.08) 0%, transparent 36%),
+    radial-gradient(circle at 88% 82%, hsl(33 90% 62% / 0.06) 0%, transparent 34%);
 }

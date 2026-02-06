@@ -26,7 +26,7 @@ const hobbies: Hobby[] = [
   },
   {
     title: "Cooking",
-    description: "Creating culinary experiences and experimenting with flavors from various cuisines",
+    description: "Creating culinary experiences and experimenting with flavors",
     icon: "👨‍🍳",
     highlight: "Home Chef",
     color: "hsl(45 90% 55%)"
