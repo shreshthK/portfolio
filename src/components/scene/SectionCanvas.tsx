@@ -24,7 +24,8 @@ export function SectionCanvas({
   const allowOnLow = qualityPolicy?.allowOnLow ?? true;
   const disableInteractionOnLow = qualityPolicy?.disableInteractionOnLow ?? true;
   const shouldRenderCanvas = config.quality !== 'low' || allowOnLow;
-  const dpr = config.quality === 'high' ? [1, 2] : config.quality === 'medium' ? [1, 1.5] : [1, 1.25];
+  const dpr: [number, number] =
+    config.quality === 'high' ? [1, 2] : config.quality === 'medium' ? [1, 1.5] : [1, 1.25];
   const canInteract = disableInteractionOnLow && config.quality === 'low' ? false : config.interactive;
 
   if (!shouldRenderCanvas) {
