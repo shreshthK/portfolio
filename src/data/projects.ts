@@ -29,4 +29,11 @@ export const projectEntries: ProjectEntry[] = [
     tags: ['Go', 'TUI', 'CLI'],
     github: 'https://github.com/shreshthK/todo-tui',
   },
+  {
+    id: 'shreshth-rally-tracker',
+    title: 'Shreshth Rally Tracker',
+    description: 'Rally tracker project for monitoring and organizing rally progress and updates.',
+    tags: ['Tracker', 'Rally', 'Web App'],
+    github: 'https://github.com/shreshthK/shreshth-rally-tracker',
+  },
 ];
