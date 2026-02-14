@@ -29,14 +29,6 @@ function detectMotionMode(): MotionMode {
   return prefersReduced ? 'reduced' : 'full';
 }
 
-export function getInitialSceneConfig(): SceneConfig {
-  return {
-    quality: detectQualityTier(),
-    motion: detectMotionMode(),
-    interactive: detectMotionMode() === 'full',
-  };
-}
-
 export function useSceneConfig(): SceneConfig {
   const [quality, setQuality] = useState<QualityTier>(() => detectQualityTier());
   const [motion, setMotion] = useState<MotionMode>(() => detectMotionMode());

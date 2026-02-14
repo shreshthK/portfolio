@@ -2,12 +2,8 @@ import { useMemo, useState } from 'react';
 import { motion } from 'framer-motion';
 import { fadeInUp, staggerContainer } from '@/lib/animations';
 import { timelineEntries } from '@/data/timeline';
-import TimelineRailScene from '@/components/Timeline/TimelineRailScene';
-import { SectionCanvas } from '@/components/scene/SectionCanvas';
-import { useSceneConfig } from '@/lib/performance';
 
 function Timeline() {
-  const sceneConfig = useSceneConfig();
   const [selectedId, setSelectedId] = useState<string>(timelineEntries[0].id);
 
   const selectedIndex = useMemo(
@@ -26,158 +22,39 @@ function Timeline() {
   return (
     <motion.section
       id="timeline"
-      className="py-24 md:py-28 bg-secondary/20 border-y border-border/35"
+      className="relative py-24 md:py-28 border-y border-border/35 overflow-hidden"
       initial="hidden"
       whileInView="visible"
       viewport={{ once: true, amount: 0.12 }}
       variants={staggerContainer}
     >
+      <div className="absolute inset-0 -z-10 bg-[radial-gradient(circle_at_12%_15%,hsl(197_95%_62%_/_0.14),transparent_35%),radial-gradient(circle_at_88%_84%,hsl(28_96%_64%_/_0.12),transparent_32%),linear-gradient(180deg,color-mix(in_oklab,var(--background)_86%,transparent),color-mix(in_oklab,var(--secondary)_72%,transparent))]" />
+
       <div className="max-w-6xl mx-auto px-6">
         <motion.div className="mb-12 md:mb-14" variants={fadeInUp}>
           <span className="font-mono text-[11px] tracking-[0.2em] uppercase text-accent mb-4 block">
-            Execution Rail
+            Career Signal
           </span>
           <h2 className="text-4xl md:text-5xl font-display font-bold text-foreground">Experience</h2>
         </motion.div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-[320px_1fr] gap-8 lg:gap-10 items-start">
-          <motion.div
+        <div className="grid grid-cols-1 lg:grid-cols-[360px_1fr] gap-8 lg:gap-12 items-start">
+          <motion.aside
             variants={fadeInUp}
-            className="rounded-md border border-border/60 overflow-hidden bg-card/75"
+            className="lg:sticky lg:top-24 rounded-md border border-border/60 bg-card/75 backdrop-blur-sm overflow-hidden"
           >
-            <div className="relative h-[420px] border-b border-border/60 overflow-hidden">
-              <SectionCanvas
-                className="absolute inset-0"
-                config={sceneConfig}
-                qualityPolicy={{ allowOnLow: true, disableInteractionOnLow: true }}
-                camera={{ position: [0.9, 0, 6], fov: 38 }}
-                fallback={
-                  <div className="h-full bg-[radial-gradient(circle_at_75%_18%,hsl(211_80%_62%_/_0.16),transparent_45%),radial-gradient(circle_at_24%_72%,hsl(33_90%_62%_/_0.13),transparent_40%),linear-gradient(180deg,var(--card),var(--background))]" />
-                }
-              >
-                <TimelineRailScene entries={timelineEntries} selectedId={selectedId} config={sceneConfig} />
-              </SectionCanvas>
-
-              <div className="absolute inset-0 pointer-events-none bg-[linear-gradient(180deg,transparent_0%,color-mix(in_oklab,var(--background)_84%,transparent)_100%)]" />
-
-              <div className="absolute left-5 top-4 z-10">
-                <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-accent">
-                  Journey Map
+            <div className="p-5 border-b border-border/60 bg-[linear-gradient(140deg,color-mix(in_oklab,var(--accent)_18%,transparent)_0%,transparent_65%)]">
+              <div className="flex items-center justify-between gap-3 mb-3">
+                <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-accent">Active Role</span>
+                <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-muted-foreground">
+                  {String(selectedIndex + 1).padStart(2, '0')} / {String(timelineEntries.length).padStart(2, '0')}
                 </span>
-              </div>
-
-              <div className="absolute left-5 right-5 top-12 bottom-6 pointer-events-none">
-                <div className="absolute left-[7px] top-1 bottom-1 w-px bg-border/80" />
-                <div className="h-full flex flex-col justify-between">
-                  {timelineEntries.map((entry) => {
-                    const isActive = entry.id === selectedId;
-                    const year = entry.period.slice(0, 4);
-
-                    return (
-                      <div key={`rail-marker-${entry.id}`} className="flex items-center gap-2.5">
-                        <span
-                          className={`relative size-4 rounded-full border ${
-                            isActive ? 'border-accent bg-accent/20' : 'border-border bg-background/70'
-                          }`}
-                        >
-                          <span
-                            className={`absolute inset-[3px] rounded-full ${
-                              isActive ? 'bg-accent' : 'bg-muted-foreground/70'
-                            }`}
-                          />
-                        </span>
-                        <span
-                          className={`font-mono text-[10px] tracking-[0.14em] uppercase ${
-                            isActive ? 'text-accent' : 'text-muted-foreground'
-                          }`}
-                        >
-                          {year}
-                        </span>
-                      </div>
-                    );
-                  })}
-                </div>
-              </div>
-            </div>
-
-            <div className="p-3 flex items-center justify-between border-t border-border/60">
-              <button
-                className="font-mono text-[10px] uppercase tracking-[0.16em] px-2 py-1 border border-border/60 text-muted-foreground hover:text-accent"
-                onClick={() => selectRelative(-1)}
-                aria-label="Select previous role"
-              >
-                Prev
-              </button>
-              <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-muted-foreground">
-                {String(selectedIndex + 1).padStart(2, '0')} / {String(timelineEntries.length).padStart(2, '0')}
-              </span>
-              <button
-                className="font-mono text-[10px] uppercase tracking-[0.16em] px-2 py-1 border border-border/60 text-muted-foreground hover:text-accent"
-                onClick={() => selectRelative(1)}
-                aria-label="Select next role"
-              >
-                Next
-              </button>
-            </div>
-          </motion.div>
-
-          <motion.div variants={staggerContainer} className="space-y-4">
-            {timelineEntries.map((entry, index) => {
-              const isActive = entry.id === selectedId;
-              return (
-                <motion.button
-                  key={entry.id}
-                  variants={fadeInUp}
-                  onClick={() => setSelectedId(entry.id)}
-                  onKeyDown={(event) => {
-                    if (event.key === 'ArrowDown') {
-                      event.preventDefault();
-                      selectRelative(1);
-                    }
-                    if (event.key === 'ArrowUp') {
-                      event.preventDefault();
-                      selectRelative(-1);
-                    }
-                  }}
-                  className={`w-full text-left border px-4 py-4 transition-colors duration-200 ${
-                    isActive
-                      ? 'border-accent/80 bg-accent/10'
-                      : 'border-border/50 bg-card/60 hover:bg-card/80'
-                  }`}
-                  aria-pressed={isActive}
-                >
-                  <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
-                    <span className="font-mono text-[10px] tracking-[0.16em] text-accent w-7 shrink-0">
-                      {String(index + 1).padStart(2, '0')}
-                    </span>
-                    <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-muted-foreground shrink-0 md:w-36">
-                      {entry.period}
-                    </span>
-                    <span className="text-sm font-semibold text-foreground flex-1">{entry.title}</span>
-                  </div>
-                </motion.button>
-              );
-            })}
-
-            <motion.article
-              variants={fadeInUp}
-              className="mt-6 border border-border/70 bg-card/85 p-5"
-            >
-              <div className="flex flex-wrap items-center gap-2 mb-2">
-                <span className="font-mono text-[10px] tracking-[0.16em] uppercase text-[var(--accent-warm)]">
-                  Active Context
-                </span>
-                {selectedEntry.featured && (
-                  <span className="font-mono text-[10px] tracking-[0.16em] uppercase border border-[var(--accent-warm)] px-2 py-0.5 text-[var(--accent-warm)]">
-                    Current
-                  </span>
-                )}
               </div>
 
               <h3 className="text-2xl font-display text-foreground mb-2">{selectedEntry.title}</h3>
               <p className="text-sm text-muted-foreground leading-relaxed mb-4">{selectedEntry.description}</p>
 
-              <div className="text-xs text-foreground mb-3">
+              <div className="text-xs text-foreground mb-4">
                 <span className="font-semibold">{selectedEntry.role}</span>
                 <span className="text-muted-foreground"> at </span>
                 {selectedEntry.companyUrl ? (
@@ -204,7 +81,84 @@ function Timeline() {
                   </span>
                 ))}
               </div>
-            </motion.article>
+            </div>
+
+            <div className="p-3 flex items-center justify-between">
+              <button
+                className="font-mono text-[10px] uppercase tracking-[0.16em] px-2.5 py-1.5 border border-border/60 text-muted-foreground hover:text-accent transition-colors"
+                onClick={() => selectRelative(-1)}
+                aria-label="Select previous role"
+              >
+                Prev
+              </button>
+              <button
+                className="font-mono text-[10px] uppercase tracking-[0.16em] px-2.5 py-1.5 border border-border/60 text-muted-foreground hover:text-accent transition-colors"
+                onClick={() => selectRelative(1)}
+                aria-label="Select next role"
+              >
+                Next
+              </button>
+            </div>
+          </motion.aside>
+
+          <motion.div variants={staggerContainer} className="relative">
+            <div className="absolute left-[11px] sm:left-[15px] top-2 bottom-2 w-[2px] bg-[linear-gradient(180deg,hsl(199_92%_65%_/_0.35),hsl(26_98%_62%_/_0.35))]" />
+
+            <div className="space-y-4">
+              {timelineEntries.map((entry, index) => {
+                const isActive = entry.id === selectedId;
+                return (
+                  <motion.button
+                    key={entry.id}
+                    variants={fadeInUp}
+                    onClick={() => setSelectedId(entry.id)}
+                    onKeyDown={(event) => {
+                      if (event.key === 'ArrowDown') {
+                        event.preventDefault();
+                        selectRelative(1);
+                      }
+                      if (event.key === 'ArrowUp') {
+                        event.preventDefault();
+                        selectRelative(-1);
+                      }
+                    }}
+                    className={`group w-full text-left pl-8 sm:pl-12 pr-4 py-4 rounded-md border transition-all duration-250 ${
+                      isActive
+                        ? 'border-accent/75 bg-card shadow-[0_0_0_1px_color-mix(in_oklab,var(--accent)_25%,transparent),0_14px_30px_-18px_color-mix(in_oklab,var(--accent)_38%,black)]'
+                        : 'border-border/55 bg-card/65 hover:bg-card/85'
+                    }`}
+                    aria-pressed={isActive}
+                  >
+                    <span
+                      className={`absolute left-[4px] sm:left-[8px] mt-[6px] inline-flex size-4 items-center justify-center rounded-full border ${
+                        isActive ? 'border-accent bg-accent/18' : 'border-border bg-background'
+                      }`}
+                    >
+                      <span
+                        className={`size-1.5 rounded-full ${isActive ? 'bg-accent' : 'bg-muted-foreground/70'}`}
+                      />
+                    </span>
+
+                    <div className="flex flex-col md:flex-row md:items-center gap-2 md:gap-4">
+                      <span className="font-mono text-[10px] tracking-[0.16em] text-accent w-7 shrink-0">
+                        {String(index + 1).padStart(2, '0')}
+                      </span>
+                      <span className="font-mono text-[11px] tracking-[0.1em] uppercase text-muted-foreground shrink-0 md:w-36">
+                        {entry.period}
+                      </span>
+                      <span className="text-sm font-semibold text-foreground flex-1">{entry.title}</span>
+                      {entry.featured && (
+                        <span className="font-mono text-[10px] tracking-[0.14em] uppercase border border-[var(--accent-warm)] px-2 py-0.5 text-[var(--accent-warm)]">
+                          Current
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="mt-2 text-xs text-muted-foreground leading-relaxed">{entry.company}</p>
+                  </motion.button>
+                );
+              })}
+            </div>
           </motion.div>
         </div>
       </div>
