@@ -16,14 +16,13 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 - Tailwind CSS 4 (using `@tailwindcss/vite` plugin)
 - Shadcn UI (new-york style) with Radix primitives
 - Preline for UI components
-- React Router DOM for routing
 - Recharts for data visualization
 
 ## Architecture
 
 This is a single-page portfolio website with the following structure:
 
-**Entry Point**: `src/main.tsx` wraps the app in `BrowserRouter` and a custom `ThemeProvider`
+**Entry Point**: `src/main.tsx` wraps the app in a custom `ThemeProvider`
 
 **App Structure** (`src/App.tsx`): Renders sections in order: Navbar → Hero → Skills → Timeline → DemoGraph → PictureCard → Footer
 
